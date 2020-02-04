@@ -9,11 +9,11 @@
     android:background="@drawable/loginbackground3">
 
     <EditText
-        android:id="@+id/etUserName"
+        android:id="@+id/etUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="UserName"
+        android:hint="Username"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +32,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUserName"
+        app:layout_constraintTop_toBottomOf="@+id/etUsername"
         app:layout_constraintVertical_bias="0.109" />
 
     <Button
@@ -71,17 +71,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSignUp"
         app:layout_constraintVertical_bias="0.348" />
-
-    <TextView
-        android:id="@+id/tvIncorrect"
-        android:layout_width="187dp"
-        android:layout_height="19dp"
-        android:layout_marginTop="57dp"
-        android:text="Email or Password is incorrect."
-        app:layout_constraintBottom_toBottomOf="@+id/btSignIn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etPass"
-        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

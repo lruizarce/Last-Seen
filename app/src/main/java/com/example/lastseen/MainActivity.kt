@@ -3,7 +3,9 @@ package com.example.lastseen
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 
@@ -22,10 +24,12 @@ class MainActivity : AppCompatActivity() {
         val tvForgotten : TextView = findViewById(R.id.tvForgotten)
 
         btSignIn.setOnClickListener {
-            val intent = Intent(this, Itinerary::class.java)
+            if (validateSignIn()) {
+                val intent = Intent(this, Itinerary::class.java)
 
-            startActivity(intent)
-            finish()
+                startActivity(intent)
+                finish()
+            }
         }
 
         tvSignUp.setOnClickListener {
@@ -37,5 +41,18 @@ class MainActivity : AppCompatActivity() {
         tvForgotten.setOnClickListener {
             Toast.makeText(applicationContext, "IMPLEMENT LATER", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun validateSignIn() : Boolean {
+        val username : EditText = findViewById(R.id.etUsername)
+        val password : EditText = findViewById(R.id.etPass)
+
+        if (TextUtils.isEmpty(username.text) || TextUtils.isEmpty(password.text)) {
+            Toast.makeText(applicationContext, "USERNAME AND PASSWORD CANNOT BE EMPTY", Toast.LENGTH_SHORT).show()
+
+            return false
+        }
+
+        return true
     }
 }
