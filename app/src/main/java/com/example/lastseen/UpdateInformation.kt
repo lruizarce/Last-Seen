@@ -74,7 +74,7 @@ class UpdateInformation : AppCompatActivity() {
                 clearFocus(streetAddressInput, cityAddressInput, stateAddressInput, zipCodeAddressInput)
                 hideKeyboard(updateInformationLayout)
                 address.text = streetAddressInput.text.append("\n")
-                    .append(cityAddressInput.text.toString() + " "
+                    .append(cityAddressInput.text.toString() + ", "
                             + stateAddressInput.text.toString() + " "
                             + zipCodeAddressInput.text.toString())
                 toggleVisibility(address, streetAddressInput, cityAddressInput, stateAddressInput, zipCodeAddressInput)
@@ -83,7 +83,7 @@ class UpdateInformation : AppCompatActivity() {
 
                 val street : String = address.text.split("\n")[0]
                 val cityStateZip : String = address.text.split("\n")[1]
-                val city : String = cityStateZip.split(" ")[0]
+                val city : String = cityStateZip.split(" ")[0].replace(",", "")
                 val state : String = cityStateZip.split(" ")[1]
                 val zip : String = cityStateZip.split(" ")[2]
 
