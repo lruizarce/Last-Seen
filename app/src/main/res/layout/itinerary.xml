@@ -57,9 +57,7 @@
         android:layout_height="wrap_content"
         android:entries="@array/hours"
         app:layout_constraintTop_toBottomOf="@id/itinerary_calendar"
-        app:layout_constraintRight_toLeftOf="@id/minute_dropdown">
-
-    </Spinner>
+        app:layout_constraintRight_toLeftOf="@id/minute_dropdown"/>
 
     <Spinner
         android:id="@+id/minute_dropdown"

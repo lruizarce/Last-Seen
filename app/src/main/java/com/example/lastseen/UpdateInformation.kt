@@ -3,16 +3,13 @@ package com.example.lastseen
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.Layout
-import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
+import android.widget.Toast
 
 class UpdateInformation : AppCompatActivity() {
     private var toggleNameEdit = false
@@ -24,6 +21,34 @@ class UpdateInformation : AppCompatActivity() {
     private lateinit var updateInformationLayout : View
     private lateinit var inputMethodManager : InputMethodManager
 
+    private lateinit var changeNameButton : Button
+    private lateinit var firstNameInput : EditText
+    private lateinit var lastNameInput : EditText
+    private lateinit var name : TextView
+
+    private lateinit var changeAddressButton : Button
+    private lateinit var streetAddressInput : EditText
+    private lateinit var cityAddressInput : EditText
+    private lateinit var stateAddressInput : EditText
+    private lateinit var zipCodeAddressInput : EditText
+    private lateinit var address : TextView
+
+    private lateinit var changePhoneNumberButton : Button
+    private lateinit var phoneNumberInput : EditText
+    private lateinit var phoneNumber : TextView
+
+    private lateinit var changeEmergencyContact1Button : Button
+    private lateinit var emergencyContact1FirstNameInput : EditText
+    private lateinit var emergencyContact1LastNameInput : EditText
+    private lateinit var emergencyContact1PhoneNumberInput : EditText
+    private lateinit var emergencyContact1 : TextView
+
+    private lateinit var changeEmergencyContact2Button : Button
+    private lateinit var emergencyContact2FirstNameInput : EditText
+    private lateinit var emergencyContact2LastNameInput : EditText
+    private lateinit var emergencyContact2PhoneNumberInput : EditText
+    private lateinit var emergencyContact2 : TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_information)
@@ -31,77 +56,87 @@ class UpdateInformation : AppCompatActivity() {
         updateInformationLayout = findViewById(R.id.update_information_layout)
         inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
-        initializeChangeNameButton()
-        initializeChangeAddressButton()
-        initializeChangePhoneNumberButton()
-        initializeChangeEmergencyContact1Button()
-        initializeChangeEmergencyContact2Button()
+        initializeAllViewsAndButtons()
+        setOnClickListenerChangeNameButton()
+        setOnClickListenerChangeAddressButton()
+        setOnClickListenerChangePhoneNumberButton()
+        setOnClickListenerChangeEmergencyContact1Button()
+        setOnClickListenerChangeEmergencyContact2Button()
+        setOnClickListenerSubmitButton()
     }
 
-    private fun initializeChangeNameButton() {
-        val changeNameButton : Button = findViewById(R.id.change_name_button)
-        val firstNameInput : EditText = findViewById(R.id.first_name_input)
-        val lastNameInput : EditText = findViewById(R.id.last_name_input)
-        val name : TextView = findViewById(R.id.name)
+    private fun initializeAllViewsAndButtons() {
+        changeNameButton = findViewById(R.id.change_name_button)
+        firstNameInput = findViewById(R.id.first_name_input)
+        lastNameInput = findViewById(R.id.last_name_input)
+        name = findViewById(R.id.name)
 
+        nameTextViewToEditText()
+
+        changeAddressButton = findViewById(R.id.change_address_button)
+        streetAddressInput = findViewById(R.id.address_street_input)
+        cityAddressInput = findViewById(R.id.address_city_input)
+        stateAddressInput = findViewById(R.id.address_state_input)
+        zipCodeAddressInput = findViewById(R.id.address_zip_code_input)
+        address = findViewById(R.id.address)
+
+        addressTextViewToEditText()
+
+        changePhoneNumberButton = findViewById(R.id.change_phone_number_button)
+        phoneNumberInput = findViewById(R.id.phone_number_input)
+        phoneNumber = findViewById(R.id.phone_number)
+
+        phoneNumberTextViewToEditText()
+
+        changeEmergencyContact1Button = findViewById(R.id.change_emergency_contact_1_button)
+        emergencyContact1FirstNameInput = findViewById(R.id.emergency_contact_1_first_name_input)
+        emergencyContact1LastNameInput = findViewById(R.id.emergency_contact_1_last_name_input)
+        emergencyContact1PhoneNumberInput = findViewById(R.id.emergency_contact_1_phone_number_input)
+        emergencyContact1 = findViewById(R.id.emergency_contact_1)
+
+        changeEmergencyContact2Button = findViewById(R.id.change_emergency_contact_2_button)
+        emergencyContact2FirstNameInput = findViewById(R.id.emergency_contact_2_first_name_input)
+        emergencyContact2LastNameInput = findViewById(R.id.emergency_contact_2_last_name_input)
+        emergencyContact2PhoneNumberInput = findViewById(R.id.emergency_contact_2_phone_number_input)
+        emergencyContact2 = findViewById(R.id.emergency_contact_2)
+    }
+
+    private fun setOnClickListenerChangeNameButton() {
         changeNameButton.setOnClickListener {
             if (toggleNameEdit) {
                 toggleNameEdit = !toggleNameEdit
                 clearFocus(firstNameInput, lastNameInput)
                 hideKeyboard(updateInformationLayout)
-                name.text = firstNameInput.text.append(" " + lastNameInput.text)
+                name.text = firstNameInput.text.toString() + " " + lastNameInput.text.toString()
                 toggleVisibility(name, firstNameInput, lastNameInput)
             } else {
                 toggleNameEdit = !toggleNameEdit
-                firstNameInput.setText(name.text.split(" ")[0])
-                lastNameInput.setText(name.text.split(" ")[1])
+                nameTextViewToEditText()
                 toggleVisibility(name, firstNameInput, lastNameInput)
             }
         }
     }
 
-    private fun initializeChangeAddressButton() {
-        val changeAddressButton : Button = findViewById(R.id.change_address_button)
-        val streetAddressInput : EditText = findViewById(R.id.address_street_input)
-        val cityAddressInput : EditText = findViewById(R.id.address_city_input)
-        val stateAddressInput : EditText = findViewById(R.id.address_state_input)
-        val zipCodeAddressInput : EditText = findViewById(R.id.address_zip_code_input)
-        val address : TextView = findViewById(R.id.address)
-
+    private fun setOnClickListenerChangeAddressButton() {
         changeAddressButton.setOnClickListener {
             if (toggleAddressEdit) {
                 toggleAddressEdit = !toggleAddressEdit
                 clearFocus(streetAddressInput, cityAddressInput, stateAddressInput, zipCodeAddressInput)
                 hideKeyboard(updateInformationLayout)
-                address.text = streetAddressInput.text.append("\n")
-                    .append(cityAddressInput.text.toString() + ", "
-                            + stateAddressInput.text.toString() + " "
-                            + zipCodeAddressInput.text.toString())
+                address.text = streetAddressInput.text.toString() +
+                        "\n" + cityAddressInput.text.toString() +
+                        ", " + stateAddressInput.text.toString() +
+                        " " + zipCodeAddressInput.text.toString()
                 toggleVisibility(address, streetAddressInput, cityAddressInput, stateAddressInput, zipCodeAddressInput)
             } else {
                 toggleAddressEdit = !toggleAddressEdit
-
-                val street : String = address.text.split("\n")[0]
-                val cityStateZip : String = address.text.split("\n")[1]
-                val city : String = cityStateZip.split(" ")[0].replace(",", "")
-                val state : String = cityStateZip.split(" ")[1]
-                val zip : String = cityStateZip.split(" ")[2]
-
-                streetAddressInput.setText(street)
-                cityAddressInput.setText(city)
-                stateAddressInput.setText(state)
-                zipCodeAddressInput.setText(zip)
-
+                addressTextViewToEditText()
                 toggleVisibility(address, streetAddressInput, cityAddressInput, stateAddressInput, zipCodeAddressInput)
             }
         }
     }
 
-    private fun initializeChangePhoneNumberButton() {
-        val changePhoneNumberButton : Button = findViewById(R.id.change_phone_number_button)
-        val phoneNumberInput : EditText = findViewById(R.id.phone_number_input)
-        val phoneNumber : TextView = findViewById(R.id.phone_number)
-
+    private fun setOnClickListenerChangePhoneNumberButton() {
         changePhoneNumberButton.setOnClickListener {
             if (togglePhoneEdit) {
                 togglePhoneEdit = !togglePhoneEdit
@@ -119,23 +154,15 @@ class UpdateInformation : AppCompatActivity() {
 
     }
 
-    private fun initializeChangeEmergencyContact1Button() {
-        val changeEmergencyContact1Button : Button = findViewById(R.id.change_emergency_contact_1_button)
-        val emergencyContact1FirstNameInput : EditText = findViewById(R.id.emergency_contact_1_first_name_input)
-        val emergencyContact1LastNameInput : EditText = findViewById(R.id.emergency_contact_1_last_name_input)
-        val emergencyContact1PhoneNumberInput : EditText = findViewById(R.id.emergency_contact_1_phone_number_input)
-        val emergencyContact1 : TextView = findViewById(R.id.emergency_contact_1)
-
+    private fun setOnClickListenerChangeEmergencyContact1Button() {
         changeEmergencyContact1Button.setOnClickListener {
             if (toggleEmergencyContact1Edit) {
                 toggleEmergencyContact1Edit = !toggleEmergencyContact1Edit
                 clearFocus(emergencyContact1FirstNameInput, emergencyContact1LastNameInput, emergencyContact1PhoneNumberInput)
                 hideKeyboard(updateInformationLayout)
-
-                emergencyContact1.text = emergencyContact1FirstNameInput.text.append(" "
-                        + emergencyContact1LastNameInput.text.toString()
-                        + "\n" + emergencyContact1PhoneNumberInput.text)
-
+                emergencyContact1.text = emergencyContact1FirstNameInput.text.toString() +
+                        " " + emergencyContact1LastNameInput.text.toString() +
+                        "\n" + emergencyContact1PhoneNumberInput.text.toString()
                 toggleVisibility(emergencyContact1, emergencyContact1FirstNameInput, emergencyContact1LastNameInput, emergencyContact1PhoneNumberInput)
             } else {
                 toggleEmergencyContact1Edit = !toggleEmergencyContact1Edit
@@ -154,23 +181,15 @@ class UpdateInformation : AppCompatActivity() {
         }
     }
 
-    private fun initializeChangeEmergencyContact2Button() {
-        val changeEmergencyContact2Button : Button = findViewById(R.id.change_emergency_contact_2_button)
-        val emergencyContact2FirstNameInput : EditText = findViewById(R.id.emergency_contact_2_first_name_input)
-        val emergencyContact2LastNameInput : EditText = findViewById(R.id.emergency_contact_2_last_name_input)
-        val emergencyContact2PhoneNumberInput : EditText = findViewById(R.id.emergency_contact_2_phone_number_input)
-        val emergencyContact2 : TextView = findViewById(R.id.emergency_contact_2)
-
+    private fun setOnClickListenerChangeEmergencyContact2Button() {
         changeEmergencyContact2Button.setOnClickListener {
             if (toggleEmergencyContact2Edit) {
                 toggleEmergencyContact2Edit = !toggleEmergencyContact2Edit
                 clearFocus(emergencyContact2FirstNameInput, emergencyContact2LastNameInput, emergencyContact2PhoneNumberInput)
                 hideKeyboard(updateInformationLayout)
-
-                emergencyContact2.text = emergencyContact2FirstNameInput.text.append(" "
-                        + emergencyContact2LastNameInput.text.toString()
-                        + "\n" + emergencyContact2PhoneNumberInput.text)
-
+                emergencyContact2.text = emergencyContact2FirstNameInput.text.toString() +
+                        " " + emergencyContact2LastNameInput.text.toString() +
+                        "\n" + emergencyContact2PhoneNumberInput.text.toString()
                 toggleVisibility(emergencyContact2, emergencyContact2FirstNameInput, emergencyContact2LastNameInput, emergencyContact2PhoneNumberInput)
             } else {
                 toggleEmergencyContact2Edit = !toggleEmergencyContact2Edit
@@ -185,6 +204,18 @@ class UpdateInformation : AppCompatActivity() {
                 emergencyContact2PhoneNumberInput.setText(phoneNumber)
 
                 toggleVisibility(emergencyContact2, emergencyContact2FirstNameInput, emergencyContact2LastNameInput, emergencyContact2PhoneNumberInput)
+            }
+        }
+    }
+
+    private fun setOnClickListenerSubmitButton() {
+        val submitButton : Button = findViewById(R.id.update_information_submit_button)
+
+        submitButton.setOnClickListener {
+            if (requiredFieldEmpty()) {
+                Toast.makeText(applicationContext, "The required fields are missing some information", Toast.LENGTH_SHORT).show()
+            } else {
+                finish()
             }
         }
     }
@@ -211,5 +242,42 @@ class UpdateInformation : AppCompatActivity() {
 
     private fun showKeyboard(view : View) {
         inputMethodManager.showSoftInput(view, SHOW_IMPLICIT)
+    }
+
+    private fun requiredFieldEmpty() : Boolean {
+        if (firstNameInput.text.isEmpty() ||
+            lastNameInput.text.isEmpty() ||
+            streetAddressInput.text.isEmpty() ||
+            cityAddressInput.text.isEmpty() ||
+            stateAddressInput.text.isEmpty() ||
+            zipCodeAddressInput.text.isEmpty() ||
+            phoneNumberInput.text.isEmpty()) {
+
+            return true
+        }
+
+        return false
+    }
+
+    private fun nameTextViewToEditText() {
+        firstNameInput.setText(name.text.split(" ")[0])
+        lastNameInput.setText(name.text.split(" ")[1])
+    }
+
+    private fun addressTextViewToEditText() {
+        val street : String = address.text.split("\n")[0]
+        val cityStateZip : String = address.text.split("\n")[1]
+        val city : String = cityStateZip.split(" ")[0].replace(",", "")
+        val state : String = cityStateZip.split(" ")[1]
+        val zip : String = cityStateZip.split(" ")[2]
+
+        streetAddressInput.setText(street)
+        cityAddressInput.setText(city)
+        stateAddressInput.setText(state)
+        zipCodeAddressInput.setText(zip)
+    }
+
+    private fun phoneNumberTextViewToEditText() {
+        phoneNumberInput.setText(phoneNumber.text)
     }
 }
