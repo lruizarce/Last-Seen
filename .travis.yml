@@ -25,10 +25,11 @@ android:
     
 install: true
     
-before_script:
-  - mkdir -p "$ANDROID_HOME/licenses"
-  - cp ./android-licenses/ "$ANDROID_HOME/licenses/"
+before_install:
   - chmod +x gradlew
+  
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -t token
 
-script: 
-  - ./gradlew assembleRelease --stacktrace    
+# script: 
+#   - ./gradlew assembleRelease --stacktrace    
