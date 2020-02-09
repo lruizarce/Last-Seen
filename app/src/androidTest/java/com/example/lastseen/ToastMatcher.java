@@ -1,3 +1,5 @@
+//ToastMatcher obtained from QA Automated http://www.qaautomated.com/2016/01/how-to-test-toast-message-using-espresso.html
+
 package com.example.lastseen;
 
 import android.os.IBinder;
