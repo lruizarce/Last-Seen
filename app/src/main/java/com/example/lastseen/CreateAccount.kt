@@ -6,6 +6,7 @@ import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import org.w3c.dom.Text
 
 class CreateAccount : AppCompatActivity() {
 
@@ -30,12 +31,16 @@ class CreateAccount : AppCompatActivity() {
         val firstName : EditText = findViewById(R.id.FirstName)
         val lastName : EditText = findViewById(R.id.LastName)
         val dateOfBirth : EditText = findViewById(R.id.DateofBirth)
-        val address : EditText = findViewById(R.id.Address)
+        val streetAddress : EditText = findViewById(R.id.StreetAddress)
+        val city : EditText = findViewById(R.id.City)
+        val state : EditText = findViewById(R.id.State)
+        val zipCode : EditText = findViewById(R.id.ZipCode)
         val phoneNumber : EditText = findViewById(R.id.PhoneNumber)
 
         if (TextUtils.isEmpty(firstName.text) || TextUtils.isEmpty(lastName.text) ||
-            TextUtils.isEmpty(dateOfBirth.text) || TextUtils.isEmpty(address.text) ||
-            TextUtils.isEmpty(phoneNumber.text)) {
+            TextUtils.isEmpty(dateOfBirth.text) || TextUtils.isEmpty(streetAddress.text) ||
+            TextUtils.isEmpty(city.text) || TextUtils.isEmpty(state.text) ||
+            TextUtils.isEmpty(zipCode.text) || TextUtils.isEmpty(phoneNumber.text)) {
 
             Toast.makeText(applicationContext, "REQUIRED FIELDS CANNOT BE EMPTY", Toast.LENGTH_SHORT).show()
 

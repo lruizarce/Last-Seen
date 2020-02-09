@@ -10,6 +10,7 @@ import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
+import junit.framework.Assert.assertTrue
 
 import org.junit.Rule
 import org.junit.Test
@@ -62,7 +63,7 @@ class MainActivityTest {
         closeSoftKeyboard()
 
         signInButton.perform(click())
-
+        assertTrue(mainActivityTestRule.activity.isFinishing)
     }
 
     @Test
