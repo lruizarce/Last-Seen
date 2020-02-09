@@ -117,6 +117,15 @@ class UpdateInformationTest {
     fun submitWithNameTest() {
         changeNameButton.perform(click())
         firstNameInput.perform(clearText())
+        firstNameInput.perform(closeSoftKeyboard())
+        changeNameButton.perform(click())
+        submitButton.perform(click())
+
+        onView(withText("The required fields are missing some information")).inRoot(ToastMatcher()).check(matches(
+            isDisplayed()))
+
+        changeNameButton.perform(click())
+        firstNameInput.perform(typeText("First"))
         lastNameInput.perform(clearText())
         lastNameInput.perform(closeSoftKeyboard())
         changeNameButton.perform(click())
@@ -126,7 +135,6 @@ class UpdateInformationTest {
             isDisplayed()))
 
         changeNameButton.perform(click())
-        firstNameInput.perform(typeText("First"))
         lastNameInput.perform(typeText("Last"))
         lastNameInput.perform(closeSoftKeyboard())
         submitButton.perform(click())
@@ -147,7 +155,37 @@ class UpdateInformationTest {
 
         changeAddressButton.perform(click())
         streetAddressInput.perform(typeText("9999 Nine Avenue"))
-        streetAddressInput.perform(closeSoftKeyboard())
+        cityAddressInput.perform(clearText())
+        cityAddressInput.perform(closeSoftKeyboard())
+        changeAddressButton.perform(click())
+        submitButton.perform(click())
+
+        onView(withText("The required fields are missing some information")).inRoot(ToastMatcher()).check(matches(
+            isDisplayed()))
+
+        changeAddressButton.perform(click())
+        cityAddressInput.perform(typeText("Eight"))
+        stateAddressInput.perform(clearText())
+        stateAddressInput.perform(closeSoftKeyboard())
+        changeAddressButton.perform(click())
+        submitButton.perform(click())
+
+        onView(withText("The required fields are missing some information")).inRoot(ToastMatcher()).check(matches(
+            isDisplayed()))
+
+        changeAddressButton.perform(click())
+        stateAddressInput.perform(typeText("RT"))
+        zipCodeAddressInput.perform(clearText())
+        zipCodeAddressInput.perform(closeSoftKeyboard())
+        changeAddressButton.perform(click())
+        submitButton.perform(click())
+
+        onView(withText("The required fields are missing some information")).inRoot(ToastMatcher()).check(matches(
+            isDisplayed()))
+
+        changeAddressButton.perform(click())
+        zipCodeAddressInput.perform(typeText("99999"))
+        zipCodeAddressInput.perform(closeSoftKeyboard())
         changeAddressButton.perform(click())
         submitButton.perform(click())
 
