@@ -14,15 +14,15 @@ class CreateAccountTest {
     @JvmField
     val createAccountTestRule : ActivityTestRule<CreateAccount> = ActivityTestRule(CreateAccount::class.java)
 
-    private val submit = onView(withId(R.id.submit))
-    private val firstName = onView(withId(R.id.FirstName))
-    private val lastName = onView(withId(R.id.LastName))
-    private val dateOfBirth = onView(withId(R.id.DateofBirth))
-    private val streetAddress = onView(withId(R.id.StreetAddress))
-    private val city = onView(withId(R.id.City))
-    private val state = onView(withId(R.id.State))
-    private val zipCode = onView(withId(R.id.ZipCode))
-    private val phoneNumber = onView(withId(R.id.PhoneNumber))
+    private val submit = onView(withId(R.id.create_account_submit_button))
+    private val firstName = onView(withId(R.id.create_account_first_name_input))
+    private val lastName = onView(withId(R.id.create_account_last_name_input))
+    private val dateOfBirth = onView(withId(R.id.create_account_date_of_birth_input))
+    private val streetAddress = onView(withId(R.id.create_account_street_address_input))
+    private val city = onView(withId(R.id.create_account_city_input))
+    private val state = onView(withId(R.id.create_account_state_input))
+    private val zipCode = onView(withId(R.id.create_account_zip_code_input))
+    private val phoneNumber = onView(withId(R.id.create_account_phone_number_input))
 
     @Test
     fun submitTest() {

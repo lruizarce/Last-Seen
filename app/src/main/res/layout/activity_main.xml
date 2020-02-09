@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Itinerary"
-    android:background="@drawable/loginbackground3">
+    android:background="@drawable/login_background_3">
 
     <EditText
-        android:id="@+id/etUsername"
+        android:id="@+id/login_username_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -20,10 +20,11 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.443" />
+        app:layout_constraintVertical_bias="0.443"
+        android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/etPass"
+        android:id="@+id/login_password_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -32,22 +33,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUsername"
-        app:layout_constraintVertical_bias="0.109" />
+        app:layout_constraintTop_toBottomOf="@+id/login_username_input"
+        app:layout_constraintVertical_bias="0.109"
+        android:importantForAutofill="no" />
 
     <Button
-        android:id="@+id/btSignIn"
+        android:id="@+id/login_sign_in_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign In"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPass"
+        app:layout_constraintTop_toBottomOf="@+id/login_password_input"
         app:layout_constraintVertical_bias="0.274" />
 
     <TextView
-        android:id="@+id/tvSignUp"
+        android:id="@+id/login_sign_up_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -56,10 +58,10 @@
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btSignIn" />
+        app:layout_constraintTop_toBottomOf="@+id/login_sign_in_button" />
 
     <TextView
-        android:id="@+id/tvForgotten"
+        android:id="@+id/login_forgot_password_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"
@@ -69,7 +71,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/login_sign_up_link"
         app:layout_constraintVertical_bias="0.348" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

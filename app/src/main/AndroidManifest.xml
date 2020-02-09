@@ -16,9 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateAccount"></activity>
-        <activity android:name=".UpdateInformation"></activity>
-        <activity android:name=".Itinerary"></activity>
+        <activity android:name=".CreateAccount"/>
+        <activity android:name=".UpdateInformation"/>
+        <activity android:name=".Itinerary"/>
     </application>
 
 </manifest>

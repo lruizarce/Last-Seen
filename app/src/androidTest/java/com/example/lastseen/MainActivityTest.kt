@@ -20,10 +20,10 @@ class MainActivityTest {
     @JvmField
     val mainActivityTestRule : ActivityTestRule<MainActivity> = ActivityTestRule(MainActivity::class.java)
 
-    val signInButton = onView(withId(R.id.btSignIn))
-    val usernameInput = onView(withId(R.id.etUsername))
-    val passwordInput = onView(withId(R.id.etPass))
-    val signUpLink = onView(withId(R.id.tvSignUp))
+    private val signInButton = onView(withId(R.id.login_sign_in_button))
+    private val usernameInput = onView(withId(R.id.login_username_input))
+    private val passwordInput = onView(withId(R.id.login_password_input))
+    private val signUpLink = onView(withId(R.id.login_sign_up_link))
 
     @Test
     fun signInNoUsernameNoPasswordTest() {

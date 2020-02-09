@@ -19,102 +19,116 @@
         app:layout_constraintVertical_bias="0.061" />
 
     <EditText
-        android:id="@+id/FirstName"
+        android:id="@+id/create_account_first_name_input"
         android:layout_width="164dp"
         android:layout_height="45dp"
         android:hint="First Name"
-        android:inputType="text"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.164" />
+        app:layout_constraintVertical_bias="0.164"
+        android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/LastName"
+        android:id="@+id/create_account_last_name_input"
         android:layout_width="164dp"
         android:layout_height="45dp"
         android:hint="Last Name"
-        android:inputType="text"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.777"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.164" />
+        app:layout_constraintVertical_bias="0.164"
+        android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/DateofBirth"
+        android:id="@+id/create_account_date_of_birth_input"
         android:layout_width="164dp"
         android:layout_height="45dp"
         android:hint="Date of Birth"
+        android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.777"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.246" />
+        app:layout_constraintVertical_bias="0.246"
+        android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/StreetAddress"
+        android:id="@+id/create_account_street_address_input"
         android:layout_width="164dp"
         android:layout_height="45dp"
         android:hint="Street"
+        android:inputType="textPostalAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.332" />
+        app:layout_constraintVertical_bias="0.332"
+        android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/City"
+        android:id="@+id/create_account_city_input"
         android:layout_width="164dp"
         android:layout_height="45dp"
         android:hint="City"
+        android:inputType="textPostalAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.777"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.332" />
+        app:layout_constraintVertical_bias="0.332"
+        android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/State"
+        android:id="@+id/create_account_state_input"
         android:layout_width="164dp"
         android:layout_height="45dp"
         android:hint="State"
+        android:inputType="textPostalAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.415" />
+        app:layout_constraintVertical_bias="0.415"
+        android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/ZipCode"
+        android:id="@+id/create_account_zip_code_input"
         android:layout_width="164dp"
         android:layout_height="45dp"
         android:hint="Zip Code"
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.777"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.415" />
+        app:layout_constraintVertical_bias="0.415"
+        android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/PhoneNumber"
+        android:id="@+id/create_account_phone_number_input"
         android:layout_width="164dp"
         android:layout_height="45dp"
         android:hint="Phone Number"
+        android:inputType="phone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.246" />
+        app:layout_constraintVertical_bias="0.246"
+        android:importantForAutofill="no" />
 
     <TextView
         android:layout_width="168dp"
@@ -128,7 +142,7 @@
         app:layout_constraintVertical_bias="0.568" />
 
     <EditText
-        android:id="@+id/Emergencycontactfirstname"
+        android:id="@+id/create_account_emergency_contact_first_name_input"
         android:layout_width="164dp"
         android:layout_height="45dp"
         android:hint="First Name"
@@ -138,10 +152,11 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.645"
-        android:inputType="text" />
+        android:inputType="textPersonName"
+        android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/Emergencycontactlastname"
+        android:id="@+id/create_account_emergency_contact_last_name_input"
         android:layout_width="164dp"
         android:layout_height="45dp"
         android:hint="Last Name"
@@ -151,22 +166,25 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.644"
-        android:inputType="text" />
+        android:inputType="textPersonName"
+        android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/Emergencycontactphonenumber"
+        android:id="@+id/create_account_emergency_contact_phone_number_input"
         android:layout_width="164dp"
         android:layout_height="45dp"
         android:hint="Phone Number"
+        android:inputType="phone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.755" />
+        app:layout_constraintVertical_bias="0.755"
+        android:importantForAutofill="no" />
 
     <Button
-        android:id="@+id/submit"
+        android:id="@+id/create_account_submit_button"
         android:layout_width="164dp"
         android:layout_height="45dp"
         android:text="Submit"

@@ -19,9 +19,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initializeClickables() {
-        val btSignIn : Button = findViewById(R.id.btSignIn)
-        val tvSignUp : TextView = findViewById(R.id.tvSignUp)
-        val tvForgotten : TextView = findViewById(R.id.tvForgotten)
+        val btSignIn : Button = findViewById(R.id.login_sign_in_button)
+        val tvSignUp : TextView = findViewById(R.id.login_sign_up_link)
+        val tvForgotten : TextView = findViewById(R.id.login_forgot_password_link)
 
         btSignIn.setOnClickListener {
             if (validateSignIn()) {
@@ -44,8 +44,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun validateSignIn() : Boolean {
-        val username : EditText = findViewById(R.id.etUsername)
-        val password : EditText = findViewById(R.id.etPass)
+        val username : EditText = findViewById(R.id.login_username_input)
+        val password : EditText = findViewById(R.id.login_password_input)
 
         if (TextUtils.isEmpty(username.text) || TextUtils.isEmpty(password.text)) {
             Toast.makeText(applicationContext, "USERNAME AND PASSWORD CANNOT BE EMPTY", Toast.LENGTH_SHORT).show()
