@@ -1,63 +1,35 @@
 language: android
-jdk: oraclejdk8
-sudo: false
+dist: trusty
 android:
   components:
-  - tools
-  - build-tools-28.0.3
-  - android-28
+  # Uncomment the lines below if you want to
+     # use the latest revision of Android SDK Tools
+     # - tools
+     # - platform-tools
 
-before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-cache:
-  directories:
-  - $HOME/.gradle/caches/
-  - $HOME/.gradle/wrapper/
-  - $HOME/.android/build-cache
+     # The BuildTools version used by your project
+     - build-tools-26.0.2
 
-stages:
-  - name: build
-  - name: deploy branch snapshot
-    if: (NOT tag IS present) AND branch IS present AND type = push AND repo = arturdm/jacoco-android-gradle-plugin
-  - name: deploy tagged release
-    if: tag =~ ^jacoco-android-release- AND repo = arturdm/jacoco-android-gradle-plugin
+     # The SDK version used to compile your project
+     - android-26
 
-jobs:
-  include:
-  - stage: build
-    script:
-    - |
-      ./gradlew \
-      build \
-      jacocoTestReport
-    after_success:
-    - bash <(curl -s https://codecov.io/bash)
+     # Additional components
+     - extra-google-google_play_services
+     - extra-google-m2repository
+     - extra-android-m2repository
 
-  - stage: deploy branch snapshot
-    install:
-    - git fetch --unshallow --tags || true
-    - git checkout $TRAVIS_BRANCH
-    script:
-    - |
-      ./gradlew \
-      currentVersion \
-      publishSnapshot \
-      -Dbuild.number=$TRAVIS_BUILD_NUMBER
-  - stage: deploy tagged release
-    install:
-    - git config --replace-all remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
-    - git fetch --unshallow --tags || true
-    - git fetch origin master
-    - git checkout master
-    - git reset --hard $TRAVIS_BRANCH
-    script:
-    - |
-      ./gradlew \
-      currentVersion \
-      publishRelease \
-      -Dbuild.number=$TRAVIS_BUILD_NUMBER
-env:
-  global:
-    secure: QHXp0ua78CnXKl76LxC3YkuBihWl7McXZdNJvxoDbHpE7fufUHxp9yXMKQvT4CRCsjGc+3qJwio/fpkRVgruvHt9Ck3qbTLRz9MSR0APuqj+Ni2n2/LJrRBuqHQJwjsgmiRSdaNHerGRmm1XlfoKEV+prX4ctmfXZr1aUSXaxy75Ye+JZyCPPpTKi3m+uC4I6/OCFrR7pfp6HL4Ks6Ryt5bAR/jilT0e6VZ+C7QuLr/Ee2dOwWqrgFa3Vl/esKIrwCObpgFnaittUkSRHUrod7SFl+NYXY2uLyKQfqrHe2CPYFeoI8zX5hWhAYvKn8rcPESP6MjXnkKG8AKn1MgSne6XFYljDnDxEJhbMVDouCKf6vODOZoKTVXALJ30K+q3CE0ajXUXbg4rQd4tHkj2XYoq3yyHv3bPFBrl5bi60ibt1qGilN8cssVnrgJKG/XJjJJvWSnOSjWYARatB8JnIC82BQ6LEp1bLkgCkzJkxTXk6diqUi/NCmb9vIeOZlwDXBgBVQgFRUcPw/+z0IUdLKAxiPiTvDmUY9JnNRYp0HyKkzEbmAq7a8q7qEaHIYkFA8CmiW9n7SqoO540+h7VKlacpNBe6tzy0FdlK+HVCgoxNt+SjHXpcvydgfz2W32rP3L3u0sf6s+NC5YZhKfkp4SGJvJO8OYlS1hm5msrTfA=
+     # Specify at least one system image,
+     # if you need to run emulator(s) during your tests
+     - sys-img-x86-android-26
+     - sys-img-armeabi-v7a-android-17
 
+ install: true
+
+ before_install:
+   - chmod +x gradlew
+   
+after_success:
+   - bash <(curl -s https://codecov.io/bash) -t token
+
+ # script: 
+ #   - ./gradlew assembleRelease --stacktrace 
