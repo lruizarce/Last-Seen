@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/update_information_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".UpdateInformation">
+
+    <!--==================== NAME ====================-->
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="YOUR NAME"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="70dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <Button
+        android:id="@+id/change_name_button"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintTop_toTopOf="@id/name"
+        app:layout_constraintBottom_toBottomOf="@id/name"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <EditText
+        android:id="@+id/first_name_input"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="FIRST NAME"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toTopOf="@id/name"
+        app:layout_constraintLeft_toLeftOf="@id/name"
+        app:layout_constraintBottom_toBottomOf="@id/name"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/last_name_input"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="LAST NAME"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toTopOf="@id/name"
+        app:layout_constraintBottom_toBottomOf="@id/name"
+        app:layout_constraintLeft_toRightOf="@id/first_name_input"
+        android:importantForAutofill="no" />
+
+    <!--==================== ADDRESS ====================-->
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="1234 YOUR STREET\nCITY, STATE 12345"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="70dp"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <Button
+        android:id="@+id/change_address_button"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintTop_toTopOf="@id/address"
+        app:layout_constraintBottom_toBottomOf="@id/address"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <EditText
+        android:id="@+id/address_street_input"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="STREET ADDRESS"
+        android:inputType="textPostalAddress"
+        app:layout_constraintTop_toTopOf="@id/address"
+        app:layout_constraintLeft_toLeftOf="@id/address"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/address_city_input"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="CITY"
+        android:inputType="textPostalAddress"
+        app:layout_constraintTop_toBottomOf="@id/address_street_input"
+        app:layout_constraintLeft_toLeftOf="@id/address"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/address_state_input"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="STATE"
+        android:inputType="textPostalAddress"
+        app:layout_constraintTop_toBottomOf="@id/address_street_input"
+        app:layout_constraintLeft_toRightOf="@id/address_city_input"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/address_zip_code_input"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="ZIP CODE"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@id/address_street_input"
+        app:layout_constraintLeft_toRightOf="@id/address_state_input"
+        android:importantForAutofill="no" />
+
+    <!--==================== PHONE ====================-->
+
+    <TextView
+        android:id="@+id/phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="1234567890"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="70dp"
+        app:layout_constraintTop_toBottomOf="@id/address"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <Button
+        android:id="@+id/change_phone_number_button"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintTop_toTopOf="@id/phone_number"
+        app:layout_constraintBottom_toBottomOf="@id/phone_number"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <EditText
+        android:id="@+id/phone_number_input"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="NEW PHONE NUMBER"
+        android:inputType="phone"
+        app:layout_constraintTop_toTopOf="@id/phone_number"
+        app:layout_constraintLeft_toLeftOf="@id/phone_number"
+        app:layout_constraintBottom_toBottomOf="@id/phone_number"
+        android:importantForAutofill="no" />
+
+    <!--==================== EMERGENCY CONTACTS ====================-->
+
+    <TextView
+        android:id="@+id/emergency_contact_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EMERGENCY CONTACTS"
+        android:textSize="25sp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/phone_number"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/emergency_contact_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="PERSON 1\n(303)111-1111"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="70dp"
+        app:layout_constraintTop_toBottomOf="@id/emergency_contact_label"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <Button
+        android:id="@+id/change_emergency_contact_1_button"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintTop_toTopOf="@id/emergency_contact_1"
+        app:layout_constraintBottom_toBottomOf="@id/emergency_contact_1"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <EditText
+        android:id="@+id/emergency_contact_1_first_name_input"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="FIRST"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toTopOf="@id/emergency_contact_1"
+        app:layout_constraintLeft_toLeftOf="@id/emergency_contact_1"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/emergency_contact_1_last_name_input"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="LAST"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toTopOf="@id/emergency_contact_1"
+        app:layout_constraintLeft_toRightOf="@id/emergency_contact_1_first_name_input"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/emergency_contact_1_phone_number_input"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="PHONE NUMBER"
+        android:inputType="phone"
+        app:layout_constraintTop_toBottomOf="@id/emergency_contact_1_first_name_input"
+        app:layout_constraintLeft_toLeftOf="@id/emergency_contact_1"
+        android:importantForAutofill="no" />
+
+    <TextView
+        android:id="@+id/emergency_contact_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="PERSON 2\n(303)222-2222"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="70dp"
+        app:layout_constraintTop_toBottomOf="@id/emergency_contact_1"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <Button
+        android:id="@+id/change_emergency_contact_2_button"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintTop_toTopOf="@id/emergency_contact_2"
+        app:layout_constraintBottom_toBottomOf="@id/emergency_contact_2"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <EditText
+        android:id="@+id/emergency_contact_2_first_name_input"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="FIRST"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toTopOf="@id/emergency_contact_2"
+        app:layout_constraintLeft_toLeftOf="@id/emergency_contact_2"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/emergency_contact_2_last_name_input"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="LAST"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toTopOf="@id/emergency_contact_2"
+        app:layout_constraintLeft_toRightOf="@id/emergency_contact_2_first_name_input"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/emergency_contact_2_phone_number_input"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="PHONE NUMBER"
+        android:inputType="phone"
+        app:layout_constraintTop_toBottomOf="@id/emergency_contact_2_first_name_input"
+        app:layout_constraintLeft_toLeftOf="@id/emergency_contact_2"
+        android:importantForAutofill="no" />
+
+    <Button
+        android:id="@+id/update_information_submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        app:layout_constraintTop_toBottomOf="@id/emergency_contact_2_phone_number_input"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

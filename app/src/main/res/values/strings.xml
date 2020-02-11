@@ -1,3 +1,38 @@
 <resources>
     <string name="app_name">Last Seen</string>
+    <string name="user_info">User Information</string>
+  ​
+    <string-array name="different_trails">
+        <item>Black Ridge Trail</item>
+        <item>Autumn Trail</item>
+        <item>Blue Ridge Trail</item>
+    </string-array>​
+
+    <string-array name="hours">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="minutes">
+        <item>00</item>
+        <item>15</item>
+        <item>30</item>
+        <item>45</item>
+    </string-array>
+
+    <string-array name="am_pm">
+        <item>AM</item>
+        <item>PM</item>
+    </string-array>
 </resources>
+
