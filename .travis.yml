@@ -62,5 +62,4 @@ before_script:
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
 
- # script: 
- #   - ./gradlew assembleRelease --stacktrace 
+ script: ./gradlew check connectedCheck --stacktrace 
