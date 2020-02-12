@@ -1,11 +1,14 @@
 package com.example.lastseen
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.service.autofill.OnClickAction
 import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+
 
 class CreateAccount : AppCompatActivity() {
 
@@ -13,18 +16,27 @@ class CreateAccount : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.create_account)
 
+
         initializeButton()
+
+
     }
+
+
 
     private fun initializeButton() {
         val submit : Button = findViewById(R.id.create_account_submit_button)
+
 
         submit.setOnClickListener {
             if (validateAccountCreation()) {
                 finish()
             }
         }
+
+
     }
+
 
     private fun validateAccountCreation() : Boolean {
         val firstName : EditText = findViewById(R.id.create_account_first_name_input)
@@ -51,4 +63,7 @@ class CreateAccount : AppCompatActivity() {
 
         return true
     }
+
+
+
 }
