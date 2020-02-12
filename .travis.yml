@@ -2,7 +2,7 @@ language: android
 dist: trusty
 android:
   components:
-  # Uncomment the lines below if you want to
+     # Uncomment the lines below if you want to
      # use the latest revision of Android SDK Tools
      # - tools
      # - platform-tools
@@ -23,9 +23,9 @@ android:
      - sys-img-x86-android-26
      - sys-img-armeabi-v7a-android-17
 
- install: true
+install: true
 
- before_install:
+before_install:
    - chmod +x gradlew
    
 after_success:
