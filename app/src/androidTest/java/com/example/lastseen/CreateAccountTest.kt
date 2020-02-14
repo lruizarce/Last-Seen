@@ -23,6 +23,7 @@ class CreateAccountTest {
     private val state = onView(withId(R.id.create_account_state_input))
     private val zipCode = onView(withId(R.id.create_account_zip_code_input))
     private val phoneNumber = onView(withId(R.id.create_account_phone_number_input))
+    private val macAddress = onView(withId(R.id.create_account_mac_address_input))
 
     @Test
     fun submitTest() {
@@ -82,6 +83,13 @@ class CreateAccountTest {
         dateOfBirth.perform(click())
         dateOfBirth.perform(typeText("01/12/1890"))
         dateOfBirth.perform(closeSoftKeyboard())
+        submit.perform(click())
+        onView(withText("REQUIRED FIELDS CANNOT BE EMPTY")).inRoot(ToastMatcher()).check(matches(
+            isDisplayed()))
+
+        macAddress.perform(click())
+        macAddress.perform(typeText("EE:FF:00:88"))
+        macAddress.perform(closeSoftKeyboard())
         submit.perform(click())
 
         assertTrue(createAccountTestRule.activity.isFinishing)
