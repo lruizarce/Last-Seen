@@ -1,5 +1,6 @@
 package com.example.lastseen
 
+import android.bluetooth.BluetoothAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -36,6 +37,8 @@ class CreateAccount : AppCompatActivity() {
         val zipCode : EditText = findViewById(R.id.create_account_zip_code_input)
         val phoneNumber : EditText = findViewById(R.id.create_account_phone_number_input)
 
+        val mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+
         if (TextUtils.isEmpty(firstName.text) || TextUtils.isEmpty(lastName.text) ||
             TextUtils.isEmpty(dateOfBirth.text) || TextUtils.isEmpty(streetAddress.text) ||
             TextUtils.isEmpty(city.text) || TextUtils.isEmpty(state.text) ||
@@ -45,6 +48,8 @@ class CreateAccount : AppCompatActivity() {
 
             return false
         }
+
+        System.out.println(mBluetoothAdapter.name)
 
         //TODO
         //CHECK IF ACCOUNT WAS SUCCESSFULLY CREATED SERVER SIDE
