@@ -38,8 +38,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-
     private fun initializeClickables() {
         val btSignIn : Button = findViewById(R.id.login_sign_in_button)
         val tvSignUp : TextView = findViewById(R.id.login_sign_up_link)
@@ -50,6 +48,9 @@ class MainActivity : AppCompatActivity() {
         btGoogleSignIn.setOnClickListener{
             val gso : GoogleSignInOptions =
                 GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build()
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
 
             mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
