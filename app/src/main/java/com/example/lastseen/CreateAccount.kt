@@ -37,13 +37,16 @@ class CreateAccount : AppCompatActivity() {
         val zipCode : EditText = findViewById(R.id.create_account_zip_code_input)
         val phoneNumber : EditText = findViewById(R.id.create_account_phone_number_input)
         val macAddress : EditText = findViewById(R.id.create_account_mac_address_input)
+        val email : EditText = findViewById(R.id.create_account_email_input)
+        val password : EditText = findViewById(R.id.create_account_password_input)
         val mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
 
         if (TextUtils.isEmpty(firstName.text) || TextUtils.isEmpty(lastName.text) ||
             TextUtils.isEmpty(dateOfBirth.text) || TextUtils.isEmpty(streetAddress.text) ||
             TextUtils.isEmpty(city.text) || TextUtils.isEmpty(state.text) ||
             TextUtils.isEmpty(zipCode.text) || TextUtils.isEmpty(phoneNumber.text) ||
-            TextUtils.isEmpty(macAddress.text)) {
+            TextUtils.isEmpty(macAddress.text) || TextUtils.isEmpty(email.text) ||
+            TextUtils.isEmpty(password.text)) {
 
             Toast.makeText(applicationContext, "REQUIRED FIELDS CANNOT BE EMPTY", Toast.LENGTH_SHORT).show()
 
