@@ -15,8 +15,7 @@ class UpdateInformation : AppCompatActivity() {
     private var toggleNameEdit = false
     private var toggleAddressEdit = false
     private var togglePhoneEdit = false
-    private var toggleEmergencyContact1Edit = false
-    private var toggleEmergencyContact2Edit = false
+    private var toggleEmergencyContactEdit = false
 
     private lateinit var updateInformationLayout : View
     private lateinit var inputMethodManager : InputMethodManager
@@ -37,17 +36,11 @@ class UpdateInformation : AppCompatActivity() {
     private lateinit var phoneNumberInput : EditText
     private lateinit var phoneNumber : TextView
 
-    private lateinit var changeEmergencyContact1Button : Button
-    private lateinit var emergencyContact1FirstNameInput : EditText
-    private lateinit var emergencyContact1LastNameInput : EditText
-    private lateinit var emergencyContact1PhoneNumberInput : EditText
-    private lateinit var emergencyContact1 : TextView
-
-    private lateinit var changeEmergencyContact2Button : Button
-    private lateinit var emergencyContact2FirstNameInput : EditText
-    private lateinit var emergencyContact2LastNameInput : EditText
-    private lateinit var emergencyContact2PhoneNumberInput : EditText
-    private lateinit var emergencyContact2 : TextView
+    private lateinit var changeEmergencyContactButton : Button
+    private lateinit var emergencyContactFirstNameInput : EditText
+    private lateinit var emergencyContactLastNameInput : EditText
+    private lateinit var emergencyContactPhoneNumberInput : EditText
+    private lateinit var emergencyContact : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,8 +53,7 @@ class UpdateInformation : AppCompatActivity() {
         setOnClickListenerChangeNameButton()
         setOnClickListenerChangeAddressButton()
         setOnClickListenerChangePhoneNumberButton()
-        setOnClickListenerChangeEmergencyContact1Button()
-        setOnClickListenerChangeEmergencyContact2Button()
+        setOnClickListenerChangeEmergencyContactButton()
         setOnClickListenerSubmitButton()
     }
 
@@ -88,17 +80,11 @@ class UpdateInformation : AppCompatActivity() {
 
         phoneNumberTextViewToEditText()
 
-        changeEmergencyContact1Button = findViewById(R.id.change_emergency_contact_1_button)
-        emergencyContact1FirstNameInput = findViewById(R.id.emergency_contact_1_first_name_input)
-        emergencyContact1LastNameInput = findViewById(R.id.emergency_contact_1_last_name_input)
-        emergencyContact1PhoneNumberInput = findViewById(R.id.emergency_contact_1_phone_number_input)
-        emergencyContact1 = findViewById(R.id.emergency_contact_1)
-
-        changeEmergencyContact2Button = findViewById(R.id.change_emergency_contact_2_button)
-        emergencyContact2FirstNameInput = findViewById(R.id.emergency_contact_2_first_name_input)
-        emergencyContact2LastNameInput = findViewById(R.id.emergency_contact_2_last_name_input)
-        emergencyContact2PhoneNumberInput = findViewById(R.id.emergency_contact_2_phone_number_input)
-        emergencyContact2 = findViewById(R.id.emergency_contact_2)
+        changeEmergencyContactButton = findViewById(R.id.change_emergency_contact_button)
+        emergencyContactFirstNameInput = findViewById(R.id.emergency_contact_first_name_input)
+        emergencyContactLastNameInput = findViewById(R.id.emergency_contact_last_name_input)
+        emergencyContactPhoneNumberInput = findViewById(R.id.emergency_contact_phone_number_input)
+        emergencyContact = findViewById(R.id.emergency_contact)
     }
 
     private fun setOnClickListenerChangeNameButton() {
@@ -154,56 +140,29 @@ class UpdateInformation : AppCompatActivity() {
 
     }
 
-    private fun setOnClickListenerChangeEmergencyContact1Button() {
-        changeEmergencyContact1Button.setOnClickListener {
-            if (toggleEmergencyContact1Edit) {
-                toggleEmergencyContact1Edit = !toggleEmergencyContact1Edit
-                clearFocus(emergencyContact1FirstNameInput, emergencyContact1LastNameInput, emergencyContact1PhoneNumberInput)
+    private fun setOnClickListenerChangeEmergencyContactButton() {
+        changeEmergencyContactButton.setOnClickListener {
+            if (toggleEmergencyContactEdit) {
+                toggleEmergencyContactEdit = !toggleEmergencyContactEdit
+                clearFocus(emergencyContactFirstNameInput, emergencyContactLastNameInput, emergencyContactPhoneNumberInput)
                 hideKeyboard(updateInformationLayout)
-                emergencyContact1.text = emergencyContact1FirstNameInput.text.toString() +
-                        " " + emergencyContact1LastNameInput.text.toString() +
-                        "\n" + emergencyContact1PhoneNumberInput.text.toString()
-                toggleVisibility(emergencyContact1, emergencyContact1FirstNameInput, emergencyContact1LastNameInput, emergencyContact1PhoneNumberInput)
+                emergencyContact.text = emergencyContactFirstNameInput.text.toString() +
+                        " " + emergencyContactLastNameInput.text.toString() +
+                        "\n" + emergencyContactPhoneNumberInput.text.toString()
+                toggleVisibility(emergencyContact, emergencyContactFirstNameInput, emergencyContactLastNameInput, emergencyContactPhoneNumberInput)
             } else {
-                toggleEmergencyContact1Edit = !toggleEmergencyContact1Edit
+                toggleEmergencyContactEdit = !toggleEmergencyContactEdit
 
-                val fullName = emergencyContact1.text.split("\n")[0]
+                val fullName = emergencyContact.text.split("\n")[0]
                 val firstName = fullName.split(" ")[0]
                 val lastName = fullName.split(" ")[1]
-                val phoneNumber = emergencyContact1.text.split("\n")[1]
+                val phoneNumber = emergencyContact.text.split("\n")[1]
 
-                emergencyContact1FirstNameInput.setText(firstName)
-                emergencyContact1LastNameInput.setText(lastName)
-                emergencyContact1PhoneNumberInput.setText(phoneNumber)
+                emergencyContactFirstNameInput.setText(firstName)
+                emergencyContactLastNameInput.setText(lastName)
+                emergencyContactPhoneNumberInput.setText(phoneNumber)
 
-                toggleVisibility(emergencyContact1, emergencyContact1FirstNameInput, emergencyContact1LastNameInput, emergencyContact1PhoneNumberInput)
-            }
-        }
-    }
-
-    private fun setOnClickListenerChangeEmergencyContact2Button() {
-        changeEmergencyContact2Button.setOnClickListener {
-            if (toggleEmergencyContact2Edit) {
-                toggleEmergencyContact2Edit = !toggleEmergencyContact2Edit
-                clearFocus(emergencyContact2FirstNameInput, emergencyContact2LastNameInput, emergencyContact2PhoneNumberInput)
-                hideKeyboard(updateInformationLayout)
-                emergencyContact2.text = emergencyContact2FirstNameInput.text.toString() +
-                        " " + emergencyContact2LastNameInput.text.toString() +
-                        "\n" + emergencyContact2PhoneNumberInput.text.toString()
-                toggleVisibility(emergencyContact2, emergencyContact2FirstNameInput, emergencyContact2LastNameInput, emergencyContact2PhoneNumberInput)
-            } else {
-                toggleEmergencyContact2Edit = !toggleEmergencyContact2Edit
-
-                val fullName = emergencyContact2.text.split("\n")[0]
-                val firstName = fullName.split(" ")[0]
-                val lastName = fullName.split(" ")[1]
-                val phoneNumber = emergencyContact2.text.split("\n")[1]
-
-                emergencyContact2FirstNameInput.setText(firstName)
-                emergencyContact2LastNameInput.setText(lastName)
-                emergencyContact2PhoneNumberInput.setText(phoneNumber)
-
-                toggleVisibility(emergencyContact2, emergencyContact2FirstNameInput, emergencyContact2LastNameInput, emergencyContact2PhoneNumberInput)
+                toggleVisibility(emergencyContact, emergencyContactFirstNameInput, emergencyContactLastNameInput, emergencyContactPhoneNumberInput)
             }
         }
     }

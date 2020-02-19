@@ -30,17 +30,11 @@ class UpdateInformationTest {
     private val phoneNumberInput = onView(withId(R.id.phone_number_input))
     private val phoneNumber = onView(withId(R.id.phone_number))
 
-    private val changeEmergencyContact1Button = onView(withId(R.id.change_emergency_contact_1_button))
-    private val emergencyContact1FirstNameInput = onView(withId(R.id.emergency_contact_1_first_name_input))
-    private val emergencyContact1LastNameInput = onView(withId(R.id.emergency_contact_1_last_name_input))
-    private val emergencyContact1PhoneNumberInput = onView(withId(R.id.emergency_contact_1_phone_number_input))
-    private val emergencyContact1 = onView(withId(R.id.emergency_contact_1))
-
-    private val changeEmergencyContact2Button = onView(withId(R.id.change_emergency_contact_2_button))
-    private val emergencyContact2FirstNameInput = onView(withId(R.id.emergency_contact_2_first_name_input))
-    private val emergencyContact2LastNameInput = onView(withId(R.id.emergency_contact_2_last_name_input))
-    private val emergencyContact2PhoneNumberInput = onView(withId(R.id.emergency_contact_2_phone_number_input))
-    private val emergencyContact2 = onView(withId(R.id.emergency_contact_2))
+    private val changeEmergencyContact1Button = onView(withId(R.id.change_emergency_contact_button))
+    private val emergencyContact1FirstNameInput = onView(withId(R.id.emergency_contact_first_name_input))
+    private val emergencyContact1LastNameInput = onView(withId(R.id.emergency_contact_last_name_input))
+    private val emergencyContact1PhoneNumberInput = onView(withId(R.id.emergency_contact_phone_number_input))
+    private val emergencyContact1 = onView(withId(R.id.emergency_contact))
 
     private val submitButton = onView(withId(R.id.update_information_submit_button))
 
@@ -95,21 +89,6 @@ class UpdateInformationTest {
         changeEmergencyContact1Button.perform(click())
 
         emergencyContact1.check(matches(withText("First Last\n8888888888")))
-    }
-
-    @Test
-    fun updateEmergencyContact2Test() {
-        changeEmergencyContact2Button.perform(click())
-        emergencyContact2FirstNameInput.perform(clearText())
-        emergencyContact2FirstNameInput.perform(typeText("First"))
-        emergencyContact2LastNameInput.perform(clearText())
-        emergencyContact2LastNameInput.perform(typeText("Last"))
-        emergencyContact2LastNameInput.perform(closeSoftKeyboard())
-        emergencyContact2PhoneNumberInput.perform(clearText())
-        emergencyContact2PhoneNumberInput.perform(typeText("8888888888"))
-        changeEmergencyContact2Button.perform(click())
-
-        emergencyContact2.check(matches(withText("First Last\n8888888888")))
     }
 
     @Test
