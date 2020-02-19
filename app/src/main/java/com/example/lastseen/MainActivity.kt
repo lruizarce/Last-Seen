@@ -122,6 +122,7 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
+
     private fun signIn(){
         val signInIntent = mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
