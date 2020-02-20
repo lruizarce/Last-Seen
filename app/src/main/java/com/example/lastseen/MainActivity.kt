@@ -26,7 +26,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 class MainActivity : AppCompatActivity() {
 
     private lateinit var auth : FirebaseAuth
-    private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var googleSignInClient : GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try{
+            try {
                 val account = task.getResult(ApiException::class.java)
                 firebaseAuthWithGoogle(account!!)
             } catch (e : ApiException) {
@@ -135,7 +135,11 @@ class MainActivity : AppCompatActivity() {
 
         val getProfileRequest = JsonObjectRequest(Request.Method.GET, urlString, null,
             Response.Listener {
-                System.out.println("Success")
+                val intent = Intent(this, Itinerary::class.java)
+                intent.putExtra("userIdentifier", user?.uid)
+
+                startActivity(intent)
+                finish()
             },
             Response.ErrorListener {
                 Toast.makeText(applicationContext, "NO TREK POINT ACCOUNT FOUND FOR GOOGLE ACCOUNT", Toast.LENGTH_SHORT).show()

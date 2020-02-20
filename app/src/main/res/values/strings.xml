@@ -2,8 +2,8 @@
     <string name="app_name">Last Seen</string>
     <string name="user_info">User Information</string>
     <string name="server_url">https://lit-thicket-07529.herokuapp.com</string>
-    <string name="server_profile">/profile</string>
-    <string name="server_itinerary">/itinerary</string>
+    <string name="server_profile">/profile/</string>
+    <string name="server_itinerary">/itinerary/</string>
 
     <string-array name="different_trails">
         <item>Black Ridge Trail</item>
