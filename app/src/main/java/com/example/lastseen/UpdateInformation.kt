@@ -10,6 +10,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.android.volley.*
+import com.android.volley.toolbox.HttpHeaderParser
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
+import org.json.JSONObject
+import java.io.UnsupportedEncodingException
 
 class UpdateInformation : AppCompatActivity() {
     private var toggleNameEdit = false
@@ -42,6 +48,12 @@ class UpdateInformation : AppCompatActivity() {
     private lateinit var emergencyContactPhoneNumberInput : EditText
     private lateinit var emergencyContact : TextView
 
+    private lateinit var userIdentifier : String
+    private lateinit var queue : RequestQueue
+    private lateinit var dateOfBirth : String
+    private lateinit var macAddress : String
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_information)
@@ -55,6 +67,9 @@ class UpdateInformation : AppCompatActivity() {
         setOnClickListenerChangePhoneNumberButton()
         setOnClickListenerChangeEmergencyContactButton()
         setOnClickListenerSubmitButton()
+
+        queue = Volley.newRequestQueue(this)
+        getProfileInformation()
     }
 
     private fun initializeAllViewsAndButtons() {
@@ -63,7 +78,7 @@ class UpdateInformation : AppCompatActivity() {
         lastNameInput = findViewById(R.id.last_name_input)
         name = findViewById(R.id.name)
 
-        nameTextViewToEditText()
+//        nameTextViewToEditText()
 
         changeAddressButton = findViewById(R.id.change_address_button)
         streetAddressInput = findViewById(R.id.address_street_input)
@@ -72,19 +87,21 @@ class UpdateInformation : AppCompatActivity() {
         zipCodeAddressInput = findViewById(R.id.address_zip_code_input)
         address = findViewById(R.id.address)
 
-        addressTextViewToEditText()
+//        addressTextViewToEditText()
 
         changePhoneNumberButton = findViewById(R.id.change_phone_number_button)
         phoneNumberInput = findViewById(R.id.phone_number_input)
         phoneNumber = findViewById(R.id.phone_number)
 
-        phoneNumberTextViewToEditText()
+//        phoneNumberTextViewToEditText()
 
         changeEmergencyContactButton = findViewById(R.id.change_emergency_contact_button)
         emergencyContactFirstNameInput = findViewById(R.id.emergency_contact_first_name_input)
         emergencyContactLastNameInput = findViewById(R.id.emergency_contact_last_name_input)
         emergencyContactPhoneNumberInput = findViewById(R.id.emergency_contact_phone_number_input)
         emergencyContact = findViewById(R.id.emergency_contact)
+
+//        emergencyContactTextViewToEditText()
     }
 
     private fun setOnClickListenerChangeNameButton() {
@@ -174,7 +191,7 @@ class UpdateInformation : AppCompatActivity() {
             if (requiredFieldEmpty()) {
                 Toast.makeText(applicationContext, "The required fields are missing some information", Toast.LENGTH_SHORT).show()
             } else {
-                finish()
+                sendProfileInformation()
             }
         }
     }
@@ -238,5 +255,97 @@ class UpdateInformation : AppCompatActivity() {
 
     private fun phoneNumberTextViewToEditText() {
         phoneNumberInput.setText(phoneNumber.text)
+    }
+
+    private fun emergencyContactTextViewToEditText() {
+        val emergencyContactFirstAndLastName = emergencyContact.text.split("\n")[0]
+        emergencyContactFirstNameInput.setText(emergencyContactFirstAndLastName.split(" ")[0])
+        emergencyContactLastNameInput.setText(emergencyContactFirstAndLastName.split(" ")[1])
+        emergencyContactPhoneNumberInput.setText(emergencyContact.text.split("\n")[1])
+    }
+
+    private fun getProfileInformation() {
+        userIdentifier = intent.extras?.get("userIdentifier") as String
+        val urlString = getString(R.string.server_url) + getString(R.string.server_profile) + userIdentifier
+
+        val getProfileRequest = JsonObjectRequest(
+            Request.Method.GET, urlString, null,
+            Response.Listener { response ->
+                name.text = response.getString("userFirstName") + " " + response.getString("userLastName")
+                address.text = (response.getString("userStreetAddress") + "\n"
+                    + response.getString("userCity") + ", "
+                    + response.getString("userState") + " "
+                    + response.getString("userZipCode"))
+                phoneNumber.text = (response.getString("userPhoneNumber"))
+                emergencyContact.text = (response.getString("emergencyContactFirstName") + " "
+                    + response.getString("emergencyContactLastName") + "\n"
+                    + response.getString("emergencyContactPhoneNumber"))
+
+                nameTextViewToEditText()
+                addressTextViewToEditText()
+                phoneNumberTextViewToEditText()
+                emergencyContactTextViewToEditText()
+
+                dateOfBirth = response.getString("userDateOfBirth")
+                macAddress = response.getString("userMacAddress")
+            },
+            Response.ErrorListener {
+                Toast.makeText(applicationContext, "UNABLE TO CONTACT SERVER", Toast.LENGTH_SHORT).show()
+            }
+        )
+
+        queue.add(getProfileRequest)
+    }
+
+    private fun sendProfileInformation() {
+        val jsonProfileObject = generateJsonProfilePayload()
+        val urlString = getString(R.string.server_url) + getString(R.string.server_profile)
+
+        val sendProfileRequest = object : JsonObjectRequest(
+            Request.Method.PUT, urlString, jsonProfileObject,
+            Response.Listener {
+                finish()
+            },
+            Response.ErrorListener {
+                Toast.makeText(applicationContext, "COULD NOT CONTACT SERVER", Toast.LENGTH_SHORT).show()
+            }
+        ) {
+            override fun parseNetworkResponse(response: NetworkResponse?): Response<JSONObject> {
+                try {
+                    val json = String(response!!.data, charset("UTF-8"))
+
+                    if (json.isEmpty()) {
+                        return Response.success(null, HttpHeaderParser.parseCacheHeaders(response))
+                    } else {
+                        return super.parseNetworkResponse(response)
+                    }
+                } catch (e: UnsupportedEncodingException) {
+                    return Response.error(ParseError(e))
+                }
+            }
+        }
+
+        queue.add(sendProfileRequest)
+    }
+
+    private fun generateJsonProfilePayload() : JSONObject {
+        val userInformationMap = HashMap<String, Any?>()
+
+        userInformationMap.put("userIdentifier", userIdentifier)
+        userInformationMap.put("userFirstName", firstNameInput.text.toString())
+        userInformationMap.put("userLastName", lastNameInput.text.toString())
+        userInformationMap.put("userDateOfBirth", dateOfBirth)
+        userInformationMap.put("userStreetAddress", streetAddressInput.text.toString())
+        userInformationMap.put("userCity", cityAddressInput.text.toString())
+        userInformationMap.put("userState", stateAddressInput.text.toString())
+        userInformationMap.put("userZipCode", zipCodeAddressInput.text.toString())
+        userInformationMap.put("userPhoneNumber", phoneNumberInput.text.toString())
+        userInformationMap.put("userMacAddress", macAddress)
+        userInformationMap.put("userDeviceName", "TEST DEVICE NAME")
+        userInformationMap.put("emergencyContactFirstName", emergencyContactFirstNameInput.text.toString())
+        userInformationMap.put("emergencyContactLastName", emergencyContactLastNameInput.text.toString())
+        userInformationMap.put("emergencyContactPhoneNumber", emergencyContactPhoneNumberInput.text.toString())
+
+        return JSONObject(userInformationMap)
     }
 }

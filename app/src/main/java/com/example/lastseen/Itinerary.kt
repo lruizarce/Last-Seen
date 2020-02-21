@@ -55,6 +55,7 @@ class Itinerary : AppCompatActivity() {
 
         if (id == R.id.update_information) {
             val intent = Intent(this, UpdateInformation::class.java)
+            intent.putExtra("userIdentifier", userIdentifier)
 
             startActivity(intent)
         }
@@ -132,7 +133,7 @@ class Itinerary : AppCompatActivity() {
         queue = Volley.newRequestQueue(this)
         val urlString = getString(R.string.server_url) + getString(R.string.server_itinerary) + userIdentifier
 
-        val getProfileRequest = JsonArrayRequest(
+        val getItineraryItemsRequest = JsonArrayRequest(
             Request.Method.GET, urlString, null,
             Response.Listener { response ->
 
@@ -158,6 +159,6 @@ class Itinerary : AppCompatActivity() {
                 Toast.makeText(applicationContext, "UNABLE TO OBTAIN ITINERARY FROM SERVER", Toast.LENGTH_SHORT).show()
             })
 
-        queue.add(getProfileRequest)
+        queue.add(getItineraryItemsRequest)
     }
 }
