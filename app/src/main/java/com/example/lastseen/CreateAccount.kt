@@ -27,6 +27,9 @@ import org.json.JSONObject
 import java.io.UnsupportedEncodingException
 
 class CreateAccount : AppCompatActivity() {
+    private var filledOutRequiredFields = false
+    private var linkedGoogleAccount = false
+
     lateinit var firstName : EditText
     lateinit var lastName : EditText
     lateinit var dateOfBirth : EditText
@@ -144,12 +147,15 @@ class CreateAccount : AppCompatActivity() {
             || TextUtils.isEmpty(state.text)
             || TextUtils.isEmpty(zipCode.text)
             || TextUtils.isEmpty(phoneNumber.text)
-            || TextUtils.isEmpty(macAddress.text))
+            || TextUtils.isEmpty(macAddress.text)
+            || TextUtils.isEmpty(emergencyContactFirstName.text)
+            || TextUtils.isEmpty(emergencyContactLastName.text)
+            || TextUtils.isEmpty(emergencyContactPhoneNumber.text))
         {
             Toast.makeText(applicationContext, "REQUIRED FIELDS CANNOT BE EMPTY", Toast.LENGTH_SHORT).show()
+
             return false
         }
-
         return true
     }
 
@@ -163,7 +169,6 @@ class CreateAccount : AppCompatActivity() {
                  finish()
             },
             Response.ErrorListener {
-                Toast.makeText(applicationContext, "PLEASE LINK GOOGLE ACCOUNT", Toast.LENGTH_SHORT).show()
             }
         ) {
             override fun parseNetworkResponse(response: NetworkResponse?): Response<JSONObject> {
