@@ -78,8 +78,6 @@ class UpdateInformation : AppCompatActivity() {
         lastNameInput = findViewById(R.id.last_name_input)
         name = findViewById(R.id.name)
 
-//        nameTextViewToEditText()
-
         changeAddressButton = findViewById(R.id.change_address_button)
         streetAddressInput = findViewById(R.id.address_street_input)
         cityAddressInput = findViewById(R.id.address_city_input)
@@ -87,21 +85,15 @@ class UpdateInformation : AppCompatActivity() {
         zipCodeAddressInput = findViewById(R.id.address_zip_code_input)
         address = findViewById(R.id.address)
 
-//        addressTextViewToEditText()
-
         changePhoneNumberButton = findViewById(R.id.change_phone_number_button)
         phoneNumberInput = findViewById(R.id.phone_number_input)
         phoneNumber = findViewById(R.id.phone_number)
-
-//        phoneNumberTextViewToEditText()
 
         changeEmergencyContactButton = findViewById(R.id.change_emergency_contact_button)
         emergencyContactFirstNameInput = findViewById(R.id.emergency_contact_first_name_input)
         emergencyContactLastNameInput = findViewById(R.id.emergency_contact_last_name_input)
         emergencyContactPhoneNumberInput = findViewById(R.id.emergency_contact_phone_number_input)
         emergencyContact = findViewById(R.id.emergency_contact)
-
-//        emergencyContactTextViewToEditText()
     }
 
     private fun setOnClickListenerChangeNameButton() {
