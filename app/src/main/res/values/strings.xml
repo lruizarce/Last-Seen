@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">Last Seen</string>
     <string name="user_info">User Information</string>
-  ​
+    <string name="forgot_password">Forgot password?</string>
+    <string name="or_login_with">Or login with</string>
+    <string name="login">Login</string>
+    <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign Up</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    ​
     <string-array name="different_trails">
         <item>Black Ridge Trail</item>
         <item>Autumn Trail</item>

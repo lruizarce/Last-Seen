@@ -8,12 +8,13 @@
     android:background="@drawable/login_background_3"
     tools:context=".Itinerary">
 
+
     <EditText
         android:id="@+id/login_username_input"
         android:layout_width="325dp"
         android:layout_height="57dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="@string/username"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,7 +28,7 @@
         android:layout_width="315dp"
         android:layout_height="61dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:importantForAutofill="no"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,7 +41,7 @@
         android:id="@+id/login_sign_in_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -53,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="124dp"
-        android:text="Don't have an account? Sign Up"
+        android:text="@string/don_t_have_an_account_sign_up"
         android:textColor="@android:color/white"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:text="Forgot password?"
+        android:text="@string/forgot_password"
         android:textColor="@android:color/white"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -87,7 +88,7 @@
         android:id="@+id/or_login"
         android:layout_width="110dp"
         android:layout_height="18dp"
-        android:text="Or login with"
+        android:text="@string/or_login_with"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@+id/login_sign_up_link"
         app:layout_constraintEnd_toEndOf="parent"
@@ -95,6 +96,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_sign_in_button"
         app:layout_constraintVertical_bias="0.261" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="402dp"
+        android:layout_height="69dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
