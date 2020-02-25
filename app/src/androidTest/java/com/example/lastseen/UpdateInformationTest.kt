@@ -1,18 +1,20 @@
 package com.example.lastseen
 
+import android.content.Intent
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import junit.framework.Assert.assertTrue
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
 class UpdateInformationTest {
     @Rule
     @JvmField
-    val updateInformationTestRule : ActivityTestRule<UpdateInformation> = ActivityTestRule(UpdateInformation::class.java)
+    val updateInformationTestRule = ActivityTestRule(UpdateInformation::class.java, false, false)
 
     private val changeNameButton = onView(withId(R.id.change_name_button))
     private val firstNameInput = onView(withId(R.id.first_name_input))
@@ -30,19 +32,21 @@ class UpdateInformationTest {
     private val phoneNumberInput = onView(withId(R.id.phone_number_input))
     private val phoneNumber = onView(withId(R.id.phone_number))
 
-    private val changeEmergencyContact1Button = onView(withId(R.id.change_emergency_contact_1_button))
-    private val emergencyContact1FirstNameInput = onView(withId(R.id.emergency_contact_1_first_name_input))
-    private val emergencyContact1LastNameInput = onView(withId(R.id.emergency_contact_1_last_name_input))
-    private val emergencyContact1PhoneNumberInput = onView(withId(R.id.emergency_contact_1_phone_number_input))
-    private val emergencyContact1 = onView(withId(R.id.emergency_contact_1))
-
-    private val changeEmergencyContact2Button = onView(withId(R.id.change_emergency_contact_2_button))
-    private val emergencyContact2FirstNameInput = onView(withId(R.id.emergency_contact_2_first_name_input))
-    private val emergencyContact2LastNameInput = onView(withId(R.id.emergency_contact_2_last_name_input))
-    private val emergencyContact2PhoneNumberInput = onView(withId(R.id.emergency_contact_2_phone_number_input))
-    private val emergencyContact2 = onView(withId(R.id.emergency_contact_2))
+    private val changeEmergencyContactButton = onView(withId(R.id.change_emergency_contact_button))
+    private val emergencyContactFirstNameInput = onView(withId(R.id.emergency_contact_first_name_input))
+    private val emergencyContactLastNameInput = onView(withId(R.id.emergency_contact_last_name_input))
+    private val emergencyContactPhoneNumberInput = onView(withId(R.id.emergency_contact_phone_number_input))
+    private val emergencyContact = onView(withId(R.id.emergency_contact))
 
     private val submitButton = onView(withId(R.id.update_information_submit_button))
+
+    @Before
+    fun initIntent() {
+        val intent = Intent()
+
+        intent.putExtra("userIdentifier", "bqlmFPzO7lX2dbeRZ8yBugl2c4u2")
+        updateInformationTestRule.launchActivity(intent)
+    }
 
     @Test
     fun updateNameTest() {
@@ -54,6 +58,12 @@ class UpdateInformationTest {
         changeNameButton.perform(click())
 
         name.check(matches(withText("First Last")))
+
+        submitButton.perform(click())
+
+        Thread.sleep(3000)
+
+        assertTrue(updateInformationTestRule.activity.isFinishing)
     }
 
     @Test
@@ -70,6 +80,12 @@ class UpdateInformationTest {
         changeAddressButton.perform(click())
 
         address.check(matches(withText("9999 Nine Avenue\nTriangle, ZZ 99999")))
+
+        submitButton.perform(click())
+
+        Thread.sleep(3000)
+
+        assertTrue(updateInformationTestRule.activity.isFinishing)
     }
 
     @Test
@@ -80,36 +96,33 @@ class UpdateInformationTest {
         changePhoneNumberButton.perform(click())
 
         phoneNumber.check(matches(withText("9999999999")))
+
+        submitButton.perform(click())
+
+        Thread.sleep(3000)
+
+        assertTrue(updateInformationTestRule.activity.isFinishing)
     }
 
     @Test
-    fun updateEmergencyContact1Test() {
-        changeEmergencyContact1Button.perform(click())
-        emergencyContact1FirstNameInput.perform(clearText())
-        emergencyContact1FirstNameInput.perform(typeText("First"))
-        emergencyContact1LastNameInput.perform(clearText())
-        emergencyContact1LastNameInput.perform(typeText("Last"))
-        emergencyContact1LastNameInput.perform(closeSoftKeyboard())
-        emergencyContact1PhoneNumberInput.perform(clearText())
-        emergencyContact1PhoneNumberInput.perform(typeText("8888888888"))
-        changeEmergencyContact1Button.perform(click())
+    fun updateEmergencyContactTest() {
+        changeEmergencyContactButton.perform(click())
+        emergencyContactFirstNameInput.perform(clearText())
+        emergencyContactFirstNameInput.perform(typeText("First"))
+        emergencyContactLastNameInput.perform(clearText())
+        emergencyContactLastNameInput.perform(typeText("Last"))
+        emergencyContactLastNameInput.perform(closeSoftKeyboard())
+        emergencyContactPhoneNumberInput.perform(clearText())
+        emergencyContactPhoneNumberInput.perform(typeText("8888888888"))
+        changeEmergencyContactButton.perform(click())
 
-        emergencyContact1.check(matches(withText("First Last\n8888888888")))
-    }
+        emergencyContact.check(matches(withText("First Last\n8888888888")))
 
-    @Test
-    fun updateEmergencyContact2Test() {
-        changeEmergencyContact2Button.perform(click())
-        emergencyContact2FirstNameInput.perform(clearText())
-        emergencyContact2FirstNameInput.perform(typeText("First"))
-        emergencyContact2LastNameInput.perform(clearText())
-        emergencyContact2LastNameInput.perform(typeText("Last"))
-        emergencyContact2LastNameInput.perform(closeSoftKeyboard())
-        emergencyContact2PhoneNumberInput.perform(clearText())
-        emergencyContact2PhoneNumberInput.perform(typeText("8888888888"))
-        changeEmergencyContact2Button.perform(click())
+        submitButton.perform(click())
 
-        emergencyContact2.check(matches(withText("First Last\n8888888888")))
+        Thread.sleep(3000)
+
+        assertTrue(updateInformationTestRule.activity.isFinishing)
     }
 
     @Test
@@ -136,7 +149,10 @@ class UpdateInformationTest {
         changeNameButton.perform(click())
         lastNameInput.perform(typeText("Last"))
         lastNameInput.perform(closeSoftKeyboard())
+
         submitButton.perform(click())
+
+        Thread.sleep(3000)
 
         assertTrue(updateInformationTestRule.activity.isFinishing)
     }
@@ -186,7 +202,10 @@ class UpdateInformationTest {
         zipCodeAddressInput.perform(typeText("99999"))
         zipCodeAddressInput.perform(closeSoftKeyboard())
         changeAddressButton.perform(click())
+
         submitButton.perform(click())
+
+        Thread.sleep(3000)
 
         assertTrue(updateInformationTestRule.activity.isFinishing)
     }
@@ -206,7 +225,10 @@ class UpdateInformationTest {
         phoneNumberInput.perform(typeText("3333333333"))
         phoneNumberInput.perform(closeSoftKeyboard())
         changePhoneNumberButton.perform(click())
+
         submitButton.perform(click())
+
+        Thread.sleep(3000)
 
         assertTrue(updateInformationTestRule.activity.isFinishing)
     }

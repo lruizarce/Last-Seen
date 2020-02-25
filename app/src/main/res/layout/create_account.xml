@@ -8,190 +8,172 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="168dp"
-        android:layout_height="46dp"
+        android:id="@+id/user_information_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/user_info"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.037"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <EditText
         android:id="@+id/create_account_first_name_input"
-        android:layout_width="164dp"
-        android:layout_height="45dp"
+        android:layout_width="150sp"
+        android:layout_height="wrap_content"
         android:hint="First Name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.164"
-        android:importantForAutofill="no" />
+        android:importantForAutofill="no"
+        app:layout_constraintTop_toBottomOf="@id/user_information_label"
+        app:layout_constraintLeft_toLeftOf="@id/user_information_label" />
 
     <EditText
         android:id="@+id/create_account_last_name_input"
-        android:layout_width="164dp"
-        android:layout_height="45dp"
+        android:layout_width="150sp"
+        android:layout_height="wrap_content"
         android:hint="Last Name"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.777"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.164"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toTopOf="@id/create_account_first_name_input"
+        app:layout_constraintLeft_toRightOf="@id/create_account_first_name_input" />
 
     <EditText
         android:id="@+id/create_account_date_of_birth_input"
-        android:layout_width="164dp"
-        android:layout_height="45dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
         android:hint="Date of Birth"
+        android:importantForAutofill="no"
         android:inputType="date"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.777"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.246"
-        android:importantForAutofill="no" />
-
-    <EditText
-        android:id="@+id/create_account_street_address_input"
-        android:layout_width="164dp"
-        android:layout_height="45dp"
-        android:hint="Street"
-        android:inputType="textPostalAddress"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.332"
-        android:importantForAutofill="no" />
-
-    <EditText
-        android:id="@+id/create_account_city_input"
-        android:layout_width="164dp"
-        android:layout_height="45dp"
-        android:hint="City"
-        android:inputType="textPostalAddress"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.777"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.332"
-        android:importantForAutofill="no" />
-
-    <EditText
-        android:id="@+id/create_account_state_input"
-        android:layout_width="164dp"
-        android:layout_height="45dp"
-        android:hint="State"
-        android:inputType="textPostalAddress"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.415"
-        android:importantForAutofill="no" />
-
-    <EditText
-        android:id="@+id/create_account_zip_code_input"
-        android:layout_width="164dp"
-        android:layout_height="45dp"
-        android:hint="Zip Code"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.777"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.415"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@id/create_account_first_name_input"
+        app:layout_constraintLeft_toLeftOf="@id/user_information_label" />
 
     <EditText
         android:id="@+id/create_account_phone_number_input"
-        android:layout_width="164dp"
-        android:layout_height="45dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
         android:hint="Phone Number"
         android:inputType="phone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.246"
-        android:importantForAutofill="no" />
+        android:importantForAutofill="no"
+        app:layout_constraintTop_toBottomOf="@id/create_account_date_of_birth_input"
+        app:layout_constraintLeft_toLeftOf="@id/user_information_label" />
+
+    <EditText
+        android:id="@+id/create_account_street_address_input"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="Street"
+        android:importantForAutofill="no"
+        android:inputType="textPostalAddress"
+        app:layout_constraintTop_toBottomOf="@id/create_account_phone_number_input"
+        app:layout_constraintLeft_toLeftOf="@id/user_information_label" />
+
+    <EditText
+        android:id="@+id/create_account_city_input"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:hint="City"
+        android:importantForAutofill="no"
+        android:inputType="textPostalAddress"
+        app:layout_constraintTop_toBottomOf="@id/create_account_street_address_input"
+        app:layout_constraintLeft_toLeftOf="@id/user_information_label" />
+
+    <EditText
+        android:id="@+id/create_account_state_input"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:hint="State"
+        android:importantForAutofill="no"
+        android:inputType="textPostalAddress"
+        app:layout_constraintTop_toTopOf="@id/create_account_city_input"
+        app:layout_constraintLeft_toRightOf="@id/create_account_city_input" />
+
+    <EditText
+        android:id="@+id/create_account_zip_code_input"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:hint="Zip Code"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        app:layout_constraintTop_toTopOf="@id/create_account_state_input"
+        app:layout_constraintLeft_toRightOf="@id/create_account_state_input" />
+
+    <EditText
+        android:id="@+id/create_account_mac_address_input"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="Bluetooth MAC Address"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/create_account_city_input"
+        app:layout_constraintLeft_toLeftOf="@id/create_account_city_input" />
 
     <TextView
-        android:layout_width="168dp"
-        android:layout_height="46dp"
-        android:text="Emergency contacts (Optional)"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.568" />
+        android:id="@+id/emergency_contact_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Emergency contacts"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@id/create_account_mac_address_input"
+        app:layout_constraintLeft_toLeftOf="@id/create_account_mac_address_input" />
 
     <EditText
         android:id="@+id/create_account_emergency_contact_first_name_input"
-        android:layout_width="164dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:hint="First Name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.053"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.645"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@id/emergency_contact_label"
+        app:layout_constraintLeft_toLeftOf="@id/emergency_contact_label" />
 
     <EditText
         android:id="@+id/create_account_emergency_contact_last_name_input"
-        android:layout_width="164dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:hint="Last Name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.776"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.644"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toTopOf="@id/create_account_emergency_contact_first_name_input"
+        app:layout_constraintLeft_toRightOf="@id/create_account_emergency_contact_first_name_input" />
 
     <EditText
         android:id="@+id/create_account_emergency_contact_phone_number_input"
-        android:layout_width="164dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:hint="Phone Number"
+        android:importantForAutofill="no"
         android:inputType="phone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintTop_toBottomOf="@id/create_account_emergency_contact_first_name_input"
+        app:layout_constraintLeft_toLeftOf="@id/emergency_contact_label" />
+
+    <TextView
+        android:id="@+id/link_google_account_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Link Google Account"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/create_account_emergency_contact_phone_number_input"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.755"
-        android:importantForAutofill="no" />
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/create_account_google_sign_in_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/link_google_account_label"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <Button
         android:id="@+id/create_account_submit_button"
-        android:layout_width="164dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:enabled="false"
+        app:layout_constraintTop_toBottomOf="@id/create_account_google_sign_in_button"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.892" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

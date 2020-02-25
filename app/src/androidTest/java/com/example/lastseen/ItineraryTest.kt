@@ -1,5 +1,6 @@
 package com.example.lastseen
 
+import android.content.Intent
 import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -10,6 +11,7 @@ import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import org.hamcrest.CoreMatchers.*
+import org.junit.Before
 
 import org.junit.Rule
 import org.junit.Test
@@ -17,7 +19,7 @@ import org.junit.Test
 class ItineraryTest {
     @Rule
     @JvmField
-    val itineraryTestRule : ActivityTestRule<Itinerary> = ActivityTestRule(Itinerary::class.java)
+    val itineraryTestRule = ActivityTestRule(Itinerary::class.java, false, false)
 
     private val submitButton = onView(withId(R.id.itinerary_submit_button))
     private val trailDropdown = onView(withId(R.id.trail_dropdown))
@@ -25,6 +27,14 @@ class ItineraryTest {
     private val minuteDropdown = onView(withId(R.id.minute_dropdown))
     private val ampmDropdown = onView(withId(R.id.am_pm_dropdown))
     private val updateInformation = onView(withId(R.id.update_information))
+
+    @Before
+    fun initBundle() {
+        val intent = Intent()
+
+        intent.putExtra("userIdentifier", "bqlmFPzO7lX2dbeRZ8yBugl2c4u2")
+        itineraryTestRule.launchActivity(intent)
+    }
 
     @Test
     fun submitItinerary() {
@@ -41,6 +51,8 @@ class ItineraryTest {
         onData(anything()).atPosition(1).perform(click())
 
         submitButton.perform(click())
+
+        Thread.sleep(3000)
 
         onData(anything()).
             inAdapterView(withId(R.id.itinerary_list)).

@@ -10,13 +10,18 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.android.volley.*
+import com.android.volley.toolbox.HttpHeaderParser
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
+import org.json.JSONObject
+import java.io.UnsupportedEncodingException
 
 class UpdateInformation : AppCompatActivity() {
     private var toggleNameEdit = false
     private var toggleAddressEdit = false
     private var togglePhoneEdit = false
-    private var toggleEmergencyContact1Edit = false
-    private var toggleEmergencyContact2Edit = false
+    private var toggleEmergencyContactEdit = false
 
     private lateinit var updateInformationLayout : View
     private lateinit var inputMethodManager : InputMethodManager
@@ -37,17 +42,17 @@ class UpdateInformation : AppCompatActivity() {
     private lateinit var phoneNumberInput : EditText
     private lateinit var phoneNumber : TextView
 
-    private lateinit var changeEmergencyContact1Button : Button
-    private lateinit var emergencyContact1FirstNameInput : EditText
-    private lateinit var emergencyContact1LastNameInput : EditText
-    private lateinit var emergencyContact1PhoneNumberInput : EditText
-    private lateinit var emergencyContact1 : TextView
+    private lateinit var changeEmergencyContactButton : Button
+    private lateinit var emergencyContactFirstNameInput : EditText
+    private lateinit var emergencyContactLastNameInput : EditText
+    private lateinit var emergencyContactPhoneNumberInput : EditText
+    private lateinit var emergencyContact : TextView
 
-    private lateinit var changeEmergencyContact2Button : Button
-    private lateinit var emergencyContact2FirstNameInput : EditText
-    private lateinit var emergencyContact2LastNameInput : EditText
-    private lateinit var emergencyContact2PhoneNumberInput : EditText
-    private lateinit var emergencyContact2 : TextView
+    private lateinit var userIdentifier : String
+    private lateinit var queue : RequestQueue
+    private lateinit var dateOfBirth : String
+    private lateinit var macAddress : String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,9 +65,11 @@ class UpdateInformation : AppCompatActivity() {
         setOnClickListenerChangeNameButton()
         setOnClickListenerChangeAddressButton()
         setOnClickListenerChangePhoneNumberButton()
-        setOnClickListenerChangeEmergencyContact1Button()
-        setOnClickListenerChangeEmergencyContact2Button()
+        setOnClickListenerChangeEmergencyContactButton()
         setOnClickListenerSubmitButton()
+
+        queue = Volley.newRequestQueue(this)
+        getProfileInformation()
     }
 
     private fun initializeAllViewsAndButtons() {
@@ -71,8 +78,6 @@ class UpdateInformation : AppCompatActivity() {
         lastNameInput = findViewById(R.id.last_name_input)
         name = findViewById(R.id.name)
 
-        nameTextViewToEditText()
-
         changeAddressButton = findViewById(R.id.change_address_button)
         streetAddressInput = findViewById(R.id.address_street_input)
         cityAddressInput = findViewById(R.id.address_city_input)
@@ -80,25 +85,15 @@ class UpdateInformation : AppCompatActivity() {
         zipCodeAddressInput = findViewById(R.id.address_zip_code_input)
         address = findViewById(R.id.address)
 
-        addressTextViewToEditText()
-
         changePhoneNumberButton = findViewById(R.id.change_phone_number_button)
         phoneNumberInput = findViewById(R.id.phone_number_input)
         phoneNumber = findViewById(R.id.phone_number)
 
-        phoneNumberTextViewToEditText()
-
-        changeEmergencyContact1Button = findViewById(R.id.change_emergency_contact_1_button)
-        emergencyContact1FirstNameInput = findViewById(R.id.emergency_contact_1_first_name_input)
-        emergencyContact1LastNameInput = findViewById(R.id.emergency_contact_1_last_name_input)
-        emergencyContact1PhoneNumberInput = findViewById(R.id.emergency_contact_1_phone_number_input)
-        emergencyContact1 = findViewById(R.id.emergency_contact_1)
-
-        changeEmergencyContact2Button = findViewById(R.id.change_emergency_contact_2_button)
-        emergencyContact2FirstNameInput = findViewById(R.id.emergency_contact_2_first_name_input)
-        emergencyContact2LastNameInput = findViewById(R.id.emergency_contact_2_last_name_input)
-        emergencyContact2PhoneNumberInput = findViewById(R.id.emergency_contact_2_phone_number_input)
-        emergencyContact2 = findViewById(R.id.emergency_contact_2)
+        changeEmergencyContactButton = findViewById(R.id.change_emergency_contact_button)
+        emergencyContactFirstNameInput = findViewById(R.id.emergency_contact_first_name_input)
+        emergencyContactLastNameInput = findViewById(R.id.emergency_contact_last_name_input)
+        emergencyContactPhoneNumberInput = findViewById(R.id.emergency_contact_phone_number_input)
+        emergencyContact = findViewById(R.id.emergency_contact)
     }
 
     private fun setOnClickListenerChangeNameButton() {
@@ -154,56 +149,29 @@ class UpdateInformation : AppCompatActivity() {
 
     }
 
-    private fun setOnClickListenerChangeEmergencyContact1Button() {
-        changeEmergencyContact1Button.setOnClickListener {
-            if (toggleEmergencyContact1Edit) {
-                toggleEmergencyContact1Edit = !toggleEmergencyContact1Edit
-                clearFocus(emergencyContact1FirstNameInput, emergencyContact1LastNameInput, emergencyContact1PhoneNumberInput)
+    private fun setOnClickListenerChangeEmergencyContactButton() {
+        changeEmergencyContactButton.setOnClickListener {
+            if (toggleEmergencyContactEdit) {
+                toggleEmergencyContactEdit = !toggleEmergencyContactEdit
+                clearFocus(emergencyContactFirstNameInput, emergencyContactLastNameInput, emergencyContactPhoneNumberInput)
                 hideKeyboard(updateInformationLayout)
-                emergencyContact1.text = emergencyContact1FirstNameInput.text.toString() +
-                        " " + emergencyContact1LastNameInput.text.toString() +
-                        "\n" + emergencyContact1PhoneNumberInput.text.toString()
-                toggleVisibility(emergencyContact1, emergencyContact1FirstNameInput, emergencyContact1LastNameInput, emergencyContact1PhoneNumberInput)
+                emergencyContact.text = emergencyContactFirstNameInput.text.toString() +
+                        " " + emergencyContactLastNameInput.text.toString() +
+                        "\n" + emergencyContactPhoneNumberInput.text.toString()
+                toggleVisibility(emergencyContact, emergencyContactFirstNameInput, emergencyContactLastNameInput, emergencyContactPhoneNumberInput)
             } else {
-                toggleEmergencyContact1Edit = !toggleEmergencyContact1Edit
+                toggleEmergencyContactEdit = !toggleEmergencyContactEdit
 
-                val fullName = emergencyContact1.text.split("\n")[0]
+                val fullName = emergencyContact.text.split("\n")[0]
                 val firstName = fullName.split(" ")[0]
                 val lastName = fullName.split(" ")[1]
-                val phoneNumber = emergencyContact1.text.split("\n")[1]
+                val phoneNumber = emergencyContact.text.split("\n")[1]
 
-                emergencyContact1FirstNameInput.setText(firstName)
-                emergencyContact1LastNameInput.setText(lastName)
-                emergencyContact1PhoneNumberInput.setText(phoneNumber)
+                emergencyContactFirstNameInput.setText(firstName)
+                emergencyContactLastNameInput.setText(lastName)
+                emergencyContactPhoneNumberInput.setText(phoneNumber)
 
-                toggleVisibility(emergencyContact1, emergencyContact1FirstNameInput, emergencyContact1LastNameInput, emergencyContact1PhoneNumberInput)
-            }
-        }
-    }
-
-    private fun setOnClickListenerChangeEmergencyContact2Button() {
-        changeEmergencyContact2Button.setOnClickListener {
-            if (toggleEmergencyContact2Edit) {
-                toggleEmergencyContact2Edit = !toggleEmergencyContact2Edit
-                clearFocus(emergencyContact2FirstNameInput, emergencyContact2LastNameInput, emergencyContact2PhoneNumberInput)
-                hideKeyboard(updateInformationLayout)
-                emergencyContact2.text = emergencyContact2FirstNameInput.text.toString() +
-                        " " + emergencyContact2LastNameInput.text.toString() +
-                        "\n" + emergencyContact2PhoneNumberInput.text.toString()
-                toggleVisibility(emergencyContact2, emergencyContact2FirstNameInput, emergencyContact2LastNameInput, emergencyContact2PhoneNumberInput)
-            } else {
-                toggleEmergencyContact2Edit = !toggleEmergencyContact2Edit
-
-                val fullName = emergencyContact2.text.split("\n")[0]
-                val firstName = fullName.split(" ")[0]
-                val lastName = fullName.split(" ")[1]
-                val phoneNumber = emergencyContact2.text.split("\n")[1]
-
-                emergencyContact2FirstNameInput.setText(firstName)
-                emergencyContact2LastNameInput.setText(lastName)
-                emergencyContact2PhoneNumberInput.setText(phoneNumber)
-
-                toggleVisibility(emergencyContact2, emergencyContact2FirstNameInput, emergencyContact2LastNameInput, emergencyContact2PhoneNumberInput)
+                toggleVisibility(emergencyContact, emergencyContactFirstNameInput, emergencyContactLastNameInput, emergencyContactPhoneNumberInput)
             }
         }
     }
@@ -215,7 +183,7 @@ class UpdateInformation : AppCompatActivity() {
             if (requiredFieldEmpty()) {
                 Toast.makeText(applicationContext, "The required fields are missing some information", Toast.LENGTH_SHORT).show()
             } else {
-                finish()
+                sendProfileInformation()
             }
         }
     }
@@ -279,5 +247,97 @@ class UpdateInformation : AppCompatActivity() {
 
     private fun phoneNumberTextViewToEditText() {
         phoneNumberInput.setText(phoneNumber.text)
+    }
+
+    private fun emergencyContactTextViewToEditText() {
+        val emergencyContactFirstAndLastName = emergencyContact.text.split("\n")[0]
+        emergencyContactFirstNameInput.setText(emergencyContactFirstAndLastName.split(" ")[0])
+        emergencyContactLastNameInput.setText(emergencyContactFirstAndLastName.split(" ")[1])
+        emergencyContactPhoneNumberInput.setText(emergencyContact.text.split("\n")[1])
+    }
+
+    private fun getProfileInformation() {
+        userIdentifier = intent.extras?.get("userIdentifier") as String
+        val urlString = getString(R.string.server_url) + getString(R.string.server_profile) + userIdentifier
+
+        val getProfileRequest = JsonObjectRequest(
+            Request.Method.GET, urlString, null,
+            Response.Listener { response ->
+                name.text = response.getString("userFirstName") + " " + response.getString("userLastName")
+                address.text = (response.getString("userStreetAddress") + "\n"
+                    + response.getString("userCity") + ", "
+                    + response.getString("userState") + " "
+                    + response.getString("userZipCode"))
+                phoneNumber.text = (response.getString("userPhoneNumber"))
+                emergencyContact.text = (response.getString("emergencyContactFirstName") + " "
+                    + response.getString("emergencyContactLastName") + "\n"
+                    + response.getString("emergencyContactPhoneNumber"))
+
+                nameTextViewToEditText()
+                addressTextViewToEditText()
+                phoneNumberTextViewToEditText()
+                emergencyContactTextViewToEditText()
+
+                dateOfBirth = response.getString("userDateOfBirth")
+                macAddress = response.getString("userMacAddress")
+            },
+            Response.ErrorListener {
+                Toast.makeText(applicationContext, "UNABLE TO CONTACT SERVER", Toast.LENGTH_SHORT).show()
+            }
+        )
+
+        queue.add(getProfileRequest)
+    }
+
+    private fun sendProfileInformation() {
+        val jsonProfileObject = generateJsonProfilePayload()
+        val urlString = getString(R.string.server_url) + getString(R.string.server_profile)
+
+        val sendProfileRequest = object : JsonObjectRequest(
+            Request.Method.PUT, urlString, jsonProfileObject,
+            Response.Listener {
+                finish()
+            },
+            Response.ErrorListener {
+                Toast.makeText(applicationContext, "COULD NOT CONTACT SERVER", Toast.LENGTH_SHORT).show()
+            }
+        ) {
+            override fun parseNetworkResponse(response: NetworkResponse?): Response<JSONObject> {
+                try {
+                    val json = String(response!!.data, charset("UTF-8"))
+
+                    if (json.isEmpty()) {
+                        return Response.success(null, HttpHeaderParser.parseCacheHeaders(response))
+                    } else {
+                        return super.parseNetworkResponse(response)
+                    }
+                } catch (e: UnsupportedEncodingException) {
+                    return Response.error(ParseError(e))
+                }
+            }
+        }
+
+        queue.add(sendProfileRequest)
+    }
+
+    private fun generateJsonProfilePayload() : JSONObject {
+        val userInformationMap = HashMap<String, Any?>()
+
+        userInformationMap.put("userIdentifier", userIdentifier)
+        userInformationMap.put("userFirstName", firstNameInput.text.toString())
+        userInformationMap.put("userLastName", lastNameInput.text.toString())
+        userInformationMap.put("userDateOfBirth", dateOfBirth)
+        userInformationMap.put("userStreetAddress", streetAddressInput.text.toString())
+        userInformationMap.put("userCity", cityAddressInput.text.toString())
+        userInformationMap.put("userState", stateAddressInput.text.toString())
+        userInformationMap.put("userZipCode", zipCodeAddressInput.text.toString())
+        userInformationMap.put("userPhoneNumber", phoneNumberInput.text.toString())
+        userInformationMap.put("userMacAddress", macAddress)
+        userInformationMap.put("userDeviceName", "TEST DEVICE NAME")
+        userInformationMap.put("emergencyContactFirstName", emergencyContactFirstNameInput.text.toString())
+        userInformationMap.put("emergencyContactLastName", emergencyContactLastNameInput.text.toString())
+        userInformationMap.put("emergencyContactPhoneNumber", emergencyContactPhoneNumberInput.text.toString())
+
+        return JSONObject(userInformationMap)
     }
 }
