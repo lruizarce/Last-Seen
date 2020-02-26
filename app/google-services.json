@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "394132349141",
+    "firebase_url": "https://trekpoints.firebaseio.com",
+    "project_id": "trekpoints",
+    "storage_bucket": "trekpoints.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394132349141:android:b19b5cb0b91bdc4a8e825c",
+        "android_client_info": {
+          "package_name": "com.example.lastseen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "394132349141-gnivl96sdm7lf7i6gau1sm46kjnoge8i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1cvKOWAUGmeDkSPSGyj-AOYWJvgtsZBA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "394132349141-gnivl96sdm7lf7i6gau1sm46kjnoge8i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
