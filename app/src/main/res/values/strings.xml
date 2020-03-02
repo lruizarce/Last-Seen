@@ -7,6 +7,10 @@
     <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign Up</string>
     <string name="password">Password</string>
     <string name="username">Username</string>
+    <string name="submit">Submit</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="server_url" />
+    <string name="server_profile" />
     ​
     <string-array name="different_trails">
         <item>Black Ridge Trail</item>
