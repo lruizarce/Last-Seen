@@ -24,8 +24,7 @@ android:
     - tools
     - tools
 before_script:
-  - cp google-services.json
-  - cp google-services.json
+  - cp src/Last-Seen/google-services.json
 script:
   - ./gradlew clean
   - ./gradlew assembleDebug proguard-tests:build check
