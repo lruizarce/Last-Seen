@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.itinerary)
+        setContentView(R.layout.activity_main)
 
 
         providers = Arrays.asList<AuthUI.IdpConfig>(
@@ -34,6 +34,13 @@ class MainActivity : AppCompatActivity() {
             AuthUI.IdpConfig.GoogleBuilder().build()
         )
         showSignInOptions()
+
+        AuthUI.getInstance()
+            .signOut(this)
+            .addOnCompleteListener {
+                // ...
+            }
+
 
     }
 
@@ -58,19 +65,26 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 1234){
+        if(requestCode == RC_SIGN_IN){
             val response = IdpResponse.fromResultIntent(data)
             if (resultCode == Activity.RESULT_OK){
                 val user = FirebaseAuth.getInstance().currentUser
                 Toast.makeText(this, ""+user!!.email,Toast.LENGTH_LONG).show()
+                checkIfUserExists(user)
 
             }
             else{
-                Toast.makeText(this, ""+response!!.error!!.message,Toast.LENGTH_LONG).show()
+                displayUnableToLoginMessage()
             }
         }
 
     }
+
+
+    private fun displayUnableToLoginMessage() {
+        Toast.makeText(applicationContext, "UNABLE TO LOGIN", Toast.LENGTH_SHORT).show()
+    }
+
     private fun showSignInOptions(){
         startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder()
             .setAvailableProviders(providers)
