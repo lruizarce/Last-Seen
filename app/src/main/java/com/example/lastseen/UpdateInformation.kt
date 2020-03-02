@@ -1,5 +1,6 @@
 package com.example.lastseen
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -117,6 +118,7 @@ class UpdateInformation : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setOnClickListenerChangeAddressButton() {
         changeAddressButton.setOnClickListener {
             if (toggleAddressEdit) {
@@ -154,6 +156,7 @@ class UpdateInformation : AppCompatActivity() {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setOnClickListenerChangeEmergencyContact1Button() {
         changeEmergencyContact1Button.setOnClickListener {
             if (toggleEmergencyContact1Edit) {
@@ -181,6 +184,7 @@ class UpdateInformation : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setOnClickListenerChangeEmergencyContact2Button() {
         changeEmergencyContact2Button.setOnClickListener {
             if (toggleEmergencyContact2Edit) {

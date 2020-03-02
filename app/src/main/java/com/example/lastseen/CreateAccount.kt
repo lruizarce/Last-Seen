@@ -1,16 +1,16 @@
 package com.example.lastseen
 
 import android.os.Bundle
-import android.service.autofill.OnClickAction
 import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-
+import com.google.firebase.database.FirebaseDatabase
 
 
 class CreateAccount : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +38,7 @@ class CreateAccount : AppCompatActivity() {
     }
 
 
+
     private fun validateAccountCreation() : Boolean {
         val firstName : EditText = findViewById(R.id.create_account_first_name_input)
         val lastName : EditText = findViewById(R.id.create_account_last_name_input)
@@ -47,6 +48,7 @@ class CreateAccount : AppCompatActivity() {
         val state : EditText = findViewById(R.id.create_account_state_input)
         val zipCode : EditText = findViewById(R.id.create_account_zip_code_input)
         val phoneNumber : EditText = findViewById(R.id.create_account_phone_number_input)
+
 
         if (TextUtils.isEmpty(firstName.text) || TextUtils.isEmpty(lastName.text) ||
             TextUtils.isEmpty(dateOfBirth.text) || TextUtils.isEmpty(streetAddress.text) ||
