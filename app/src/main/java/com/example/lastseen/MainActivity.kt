@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
     private fun showSignInOptions(){
         startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder()
             .setAvailableProviders(providers)
-            .setTheme(R.style.MyTheme)
+            .setTheme(R.style.AppTheme)
             .build(), RC_SIGN_IN)
     }
 
