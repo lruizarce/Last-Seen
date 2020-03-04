@@ -102,6 +102,7 @@ class UpdateInformation : AppCompatActivity() {
         emergencyContact2 = findViewById(R.id.emergency_contact_2)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setOnClickListenerChangeNameButton() {
         changeNameButton.setOnClickListener {
             if (toggleNameEdit) {

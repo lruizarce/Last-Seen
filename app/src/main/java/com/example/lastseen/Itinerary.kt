@@ -1,5 +1,6 @@
 package com.example.lastseen
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -45,6 +46,7 @@ class Itinerary : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun initializeButtonAndCalendar() {
         val submitButton : Button = findViewById(R.id.itinerary_submit_button)
         val trail : Spinner = findViewById(R.id.trail_dropdown)

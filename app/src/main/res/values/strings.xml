@@ -8,9 +8,28 @@
     <string name="password">Password</string>
     <string name="username">Username</string>
     <string name="submit">Submit</string>
-    <string name="sign_out">Sign Out</string>
     <string name="server_url" />
     <string name="server_profile" />
+    <string name="your_name">YOUR NAME</string>
+    <string name="first_name">FIRST NAME</string>
+    <string name="last_name">LAST NAME</string>
+    <string name="_1234_your_street_ncity_state_12345">1234 YOUR STREET\nCITY, STATE 12345</string>
+    <string name="street_address">STREET ADDRESS</string>
+    <string name="city">CITY</string>
+    <string name="state">STATE</string>
+    <string name="zip_code">ZIP CODE</string>
+    <string name="_1234567890">1234567890</string>
+    <string name="new_phone_number">NEW PHONE NUMBER</string>
+    <string name="emergency_contacts">EMERGENCY CONTACTS</string>
+    <string name="person_1_n_303_111_1111">PERSON 1\n(303)111-1111</string>
+    <string name="first">FIRST</string>
+    <string name="last">LAST</string>
+    <string name="phone_number">PHONE NUMBER</string>
+    <string name="person_2_n_303_222_2222">PERSON 2\n(303)222-2222</string>
+    <string name="first">FIRST</string>
+    <string name="last">LAST</string>
+    <string name="phone_number">PHONE NUMBER</string>
+    <string name="submit">Submit</string>
     ​
     <string-array name="different_trails">
         <item>Black Ridge Trail</item>
