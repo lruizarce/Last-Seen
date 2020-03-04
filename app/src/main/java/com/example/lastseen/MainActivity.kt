@@ -34,7 +34,11 @@ class MainActivity : AppCompatActivity() {
         )
         showSignInOptions()
 
-
+        AuthUI.getInstance()
+            .signOut(this)
+            .addOnCompleteListener {
+                // ...
+            }
 
 
     }
@@ -85,14 +89,6 @@ class MainActivity : AppCompatActivity() {
             .setAvailableProviders(providers)
             .setTheme(R.style.MyTheme)
             .build(), RC_SIGN_IN)
-    }
-
-    private fun signOut(){
-        AuthUI.getInstance()
-            .signOut(this)
-            .addOnCompleteListener {
-                // ...
-            }
     }
 
 
