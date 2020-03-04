@@ -11,25 +11,24 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.itinerary.*
-import java.util.*
+import com.google.firebase.storage.FirebaseStorage
+
 
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var providers : List<AuthUI.IdpConfig>
-
+    private lateinit var storage: FirebaseStorage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        providers = Arrays.asList<AuthUI.IdpConfig>(
+        storage = FirebaseStorage.getInstance()
+        providers = listOf(
             AuthUI.IdpConfig.EmailBuilder().build(),
             AuthUI.IdpConfig.GoogleBuilder().build()
         )
@@ -66,7 +65,7 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == RC_SIGN_IN){
-            val response = IdpResponse.fromResultIntent(data)
+            IdpResponse.fromResultIntent(data)
             if (resultCode == Activity.RESULT_OK){
                 val user = FirebaseAuth.getInstance().currentUser
                 Toast.makeText(this, ""+user!!.email,Toast.LENGTH_LONG).show()
