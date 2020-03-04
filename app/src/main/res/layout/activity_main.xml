@@ -5,8 +5,7 @@
     android:id="@+id/UserName"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Itinerary"
-    android:background="@drawable/login_background_3">
+    tools:context=".Itinerary">
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/google_sign_in_button"
