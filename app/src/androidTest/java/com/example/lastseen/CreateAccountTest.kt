@@ -126,6 +126,7 @@ class CreateAccountTest {
         Thread.sleep(3000)
 
         submit.check(matches(isEnabled()))
+
         submit.perform(click())
         onView(withText("REQUIRED FIELDS CANNOT BE EMPTY")).inRoot(ToastMatcher()).check(matches(
             isDisplayed()))
