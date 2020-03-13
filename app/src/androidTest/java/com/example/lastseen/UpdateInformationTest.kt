@@ -51,17 +51,19 @@ class UpdateInformationTest {
     @Test
     fun updateNameTest() {
         changeNameButton.perform(click())
+        Thread.sleep(1000)
         firstNameInput.perform(clearText())
         firstNameInput.perform(typeText("First"))
         lastNameInput.perform(clearText())
         lastNameInput.perform(typeText("Last"))
         changeNameButton.perform(click())
 
+        Thread.sleep(1000)
         name.check(matches(withText("First Last")))
 
         submitButton.perform(click())
 
-        Thread.sleep(3000)
+        Thread.sleep(5000)
 
         assertTrue(updateInformationTestRule.activity.isFinishing)
     }
@@ -69,6 +71,7 @@ class UpdateInformationTest {
     @Test
     fun updateAddressTest() {
         changeAddressButton.perform(click())
+        Thread.sleep(1000)
         streetAddressInput.perform(clearText())
         streetAddressInput.perform(typeText("9999 Nine Avenue"))
         cityAddressInput.perform(clearText())
@@ -83,7 +86,7 @@ class UpdateInformationTest {
 
         submitButton.perform(click())
 
-        Thread.sleep(3000)
+        Thread.sleep(5000)
 
         assertTrue(updateInformationTestRule.activity.isFinishing)
     }
@@ -91,6 +94,7 @@ class UpdateInformationTest {
     @Test
     fun updatePhoneNumberTest() {
         changePhoneNumberButton.perform(click())
+        Thread.sleep(1000)
         phoneNumberInput.perform(clearText())
         phoneNumberInput.perform(typeText("9999999999"))
         changePhoneNumberButton.perform(click())
@@ -99,7 +103,7 @@ class UpdateInformationTest {
 
         submitButton.perform(click())
 
-        Thread.sleep(3000)
+        Thread.sleep(5000)
 
         assertTrue(updateInformationTestRule.activity.isFinishing)
     }
@@ -107,6 +111,7 @@ class UpdateInformationTest {
     @Test
     fun updateEmergencyContactTest() {
         changeEmergencyContactButton.perform(click())
+        Thread.sleep(1000)
         emergencyContactFirstNameInput.perform(clearText())
         emergencyContactFirstNameInput.perform(typeText("First"))
         emergencyContactLastNameInput.perform(clearText())
@@ -120,7 +125,7 @@ class UpdateInformationTest {
 
         submitButton.perform(click())
 
-        Thread.sleep(3000)
+        Thread.sleep(5000)
 
         assertTrue(updateInformationTestRule.activity.isFinishing)
     }
@@ -128,6 +133,7 @@ class UpdateInformationTest {
     @Test
     fun submitWithNameTest() {
         changeNameButton.perform(click())
+        Thread.sleep(1000)
         firstNameInput.perform(clearText())
         firstNameInput.perform(closeSoftKeyboard())
         changeNameButton.perform(click())
@@ -137,6 +143,7 @@ class UpdateInformationTest {
             isDisplayed()))
 
         changeNameButton.perform(click())
+        Thread.sleep(1000)
         firstNameInput.perform(typeText("First"))
         lastNameInput.perform(clearText())
         lastNameInput.perform(closeSoftKeyboard())
@@ -147,12 +154,13 @@ class UpdateInformationTest {
             isDisplayed()))
 
         changeNameButton.perform(click())
+        Thread.sleep(1000)
         lastNameInput.perform(typeText("Last"))
         lastNameInput.perform(closeSoftKeyboard())
 
         submitButton.perform(click())
 
-        Thread.sleep(3000)
+        Thread.sleep(5000)
 
         assertTrue(updateInformationTestRule.activity.isFinishing)
     }
@@ -160,6 +168,7 @@ class UpdateInformationTest {
     @Test
     fun submitWithAddressTest() {
         changeAddressButton.perform(click())
+        Thread.sleep(1000)
         streetAddressInput.perform(clearText())
         streetAddressInput.perform(closeSoftKeyboard())
         changeAddressButton.perform(click())
@@ -169,6 +178,7 @@ class UpdateInformationTest {
             isDisplayed()))
 
         changeAddressButton.perform(click())
+        Thread.sleep(1000)
         streetAddressInput.perform(typeText("9999 Nine Avenue"))
         cityAddressInput.perform(clearText())
         cityAddressInput.perform(closeSoftKeyboard())
@@ -179,6 +189,7 @@ class UpdateInformationTest {
             isDisplayed()))
 
         changeAddressButton.perform(click())
+        Thread.sleep(1000)
         cityAddressInput.perform(typeText("Eight"))
         stateAddressInput.perform(clearText())
         stateAddressInput.perform(closeSoftKeyboard())
@@ -189,6 +200,7 @@ class UpdateInformationTest {
             isDisplayed()))
 
         changeAddressButton.perform(click())
+        Thread.sleep(1000)
         stateAddressInput.perform(typeText("RT"))
         zipCodeAddressInput.perform(clearText())
         zipCodeAddressInput.perform(closeSoftKeyboard())
@@ -199,13 +211,14 @@ class UpdateInformationTest {
             isDisplayed()))
 
         changeAddressButton.perform(click())
+        Thread.sleep(1000)
         zipCodeAddressInput.perform(typeText("99999"))
         zipCodeAddressInput.perform(closeSoftKeyboard())
         changeAddressButton.perform(click())
 
         submitButton.perform(click())
 
-        Thread.sleep(3000)
+        Thread.sleep(5000)
 
         assertTrue(updateInformationTestRule.activity.isFinishing)
     }
@@ -213,6 +226,7 @@ class UpdateInformationTest {
     @Test
     fun submitWithPhoneNumberTest() {
         changePhoneNumberButton.perform(click())
+        Thread.sleep(1000)
         phoneNumberInput.perform(clearText())
         phoneNumberInput.perform(closeSoftKeyboard())
         changePhoneNumberButton.perform(click())
@@ -222,13 +236,14 @@ class UpdateInformationTest {
             isDisplayed()))
 
         changePhoneNumberButton.perform(click())
+        Thread.sleep(1000)
         phoneNumberInput.perform(typeText("3333333333"))
         phoneNumberInput.perform(closeSoftKeyboard())
         changePhoneNumberButton.perform(click())
 
         submitButton.perform(click())
 
-        Thread.sleep(3000)
+        Thread.sleep(5000)
 
         assertTrue(updateInformationTestRule.activity.isFinishing)
     }

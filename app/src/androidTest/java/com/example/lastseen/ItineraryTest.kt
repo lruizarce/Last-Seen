@@ -52,7 +52,7 @@ class ItineraryTest {
 
         submitButton.perform(click())
 
-        Thread.sleep(3000)
+        Thread.sleep(5000)
 
         onData(anything()).
             inAdapterView(withId(R.id.itinerary_list)).
