@@ -41,7 +41,7 @@ class MainActivityTest {
     fun googleSignInSuccessfulTest() {
         googleSignInButton.perform(click())
 
-        Thread.sleep(3000)
+        Thread.sleep(5000)
 
         assertTrue(mainActivityTestRule.activity.isFinishing)
         intended(hasComponent(Itinerary::class.java.name))

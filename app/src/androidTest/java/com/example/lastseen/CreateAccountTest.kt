@@ -35,72 +35,84 @@ class CreateAccountTest {
         submit.check(matches(not(isEnabled())))
 
         firstName.perform(click())
+        Thread.sleep(1000)
         firstName.perform(typeText("Aaron"))
         firstName.perform(closeSoftKeyboard())
 
         submit.check(matches(not(isEnabled())))
 
         lastName.perform(click())
+        Thread.sleep(1000)
         lastName.perform(typeText("Baron"))
         lastName.perform(closeSoftKeyboard())
 
         submit.check(matches(not(isEnabled())))
 
         streetAddress.perform(click())
+        Thread.sleep(1000)
         streetAddress.perform(typeText("3333 Third Road"))
         streetAddress.perform(closeSoftKeyboard())
 
         submit.check(matches(not(isEnabled())))
 
         city.perform(click())
+        Thread.sleep(1000)
         city.perform(typeText("Twenty"))
         city.perform(closeSoftKeyboard())
 
         submit.check(matches(not(isEnabled())))
 
         state.perform(click())
+        Thread.sleep(1000)
         state.perform(typeText("RT"))
         state.perform(closeSoftKeyboard())
 
         submit.check(matches(not(isEnabled())))
 
         zipCode.perform(click())
+        Thread.sleep(1000)
         zipCode.perform(typeText("3333 Third Road"))
         zipCode.perform(closeSoftKeyboard())
 
         submit.check(matches(not(isEnabled())))
 
         phoneNumber.perform(click())
+        Thread.sleep(1000)
         phoneNumber.perform(typeText("4445559999"))
         phoneNumber.perform(closeSoftKeyboard())
 
         submit.check(matches(not(isEnabled())))
 
         dateOfBirth.perform(click())
+        Thread.sleep(1000)
         dateOfBirth.perform(typeText("01/12/1890"))
         dateOfBirth.perform(closeSoftKeyboard())
 
         submit.check(matches(not(isEnabled())))
 
         macAddress.perform(click())
+        Thread.sleep(1000)
         macAddress.perform(typeText("EE:FF:00:88"))
         macAddress.perform(closeSoftKeyboard())
 
         submit.check(matches(not(isEnabled())))
 
         emergencyContactFirstName.perform(click())
+        Thread.sleep(1000)
         emergencyContactFirstName.perform(typeText("Anne"))
         emergencyContactFirstName.perform(closeSoftKeyboard())
 
         submit.check(matches(not(isEnabled())))
 
         emergencyContactLastName.perform(click())
+        Thread.sleep(1000)
         emergencyContactLastName.perform(typeText("Pot"))
         emergencyContactLastName.perform(closeSoftKeyboard())
 
         submit.check(matches(not(isEnabled())))
 
         emergencyContactPhoneNumber.perform(click())
+        Thread.sleep(1000)
         emergencyContactPhoneNumber.perform(typeText("5677651234"))
         emergencyContactPhoneNumber.perform(closeSoftKeyboard())
 
@@ -108,13 +120,11 @@ class CreateAccountTest {
 
         googleSignInButton.perform(click())
 
-        Thread.sleep(3000)
-
-        submit.check(matches(isEnabled()))
+        Thread.sleep(5000)
 
         submit.perform(click())
 
-        Thread.sleep(3000)
+        Thread.sleep(5000)
 
         assertTrue(createAccountTestRule.activity.isFinishing)
     }
@@ -123,15 +133,14 @@ class CreateAccountTest {
     fun missingFields() {
         googleSignInButton.perform(click())
 
-        Thread.sleep(3000)
-
-        submit.check(matches(isEnabled()))
+        Thread.sleep(5000)
 
         submit.perform(click())
         onView(withText("REQUIRED FIELDS CANNOT BE EMPTY")).inRoot(ToastMatcher()).check(matches(
             isDisplayed()))
 
         firstName.perform(click())
+        Thread.sleep(1000)
         firstName.perform(typeText("Aaron"))
         firstName.perform(closeSoftKeyboard())
 
@@ -140,6 +149,7 @@ class CreateAccountTest {
             isDisplayed()))
 
         lastName.perform(click())
+        Thread.sleep(1000)
         lastName.perform(typeText("Baron"))
         lastName.perform(closeSoftKeyboard())
 
@@ -148,6 +158,7 @@ class CreateAccountTest {
             isDisplayed()))
 
         streetAddress.perform(click())
+        Thread.sleep(1000)
         streetAddress.perform(typeText("3333 Third Road"))
         streetAddress.perform(closeSoftKeyboard())
 
@@ -156,6 +167,7 @@ class CreateAccountTest {
             isDisplayed()))
 
         city.perform(click())
+        Thread.sleep(1000)
         city.perform(typeText("Twenty"))
         city.perform(closeSoftKeyboard())
 
@@ -164,6 +176,7 @@ class CreateAccountTest {
             isDisplayed()))
 
         state.perform(click())
+        Thread.sleep(1000)
         state.perform(typeText("RT"))
         state.perform(closeSoftKeyboard())
 
@@ -172,6 +185,7 @@ class CreateAccountTest {
             isDisplayed()))
 
         zipCode.perform(click())
+        Thread.sleep(1000)
         zipCode.perform(typeText("3333 Third Road"))
         zipCode.perform(closeSoftKeyboard())
 
@@ -180,6 +194,7 @@ class CreateAccountTest {
             isDisplayed()))
 
         phoneNumber.perform(click())
+        Thread.sleep(1000)
         phoneNumber.perform(typeText("4445559999"))
         phoneNumber.perform(closeSoftKeyboard())
 
@@ -188,6 +203,7 @@ class CreateAccountTest {
             isDisplayed()))
 
         dateOfBirth.perform(click())
+        Thread.sleep(1000)
         dateOfBirth.perform(typeText("01/12/1890"))
         dateOfBirth.perform(closeSoftKeyboard())
 
@@ -196,6 +212,7 @@ class CreateAccountTest {
             isDisplayed()))
 
         macAddress.perform(click())
+        Thread.sleep(1000)
         macAddress.perform(typeText("EE:FF:00:88"))
         macAddress.perform(closeSoftKeyboard())
 
@@ -204,6 +221,7 @@ class CreateAccountTest {
             isDisplayed()))
 
         emergencyContactFirstName.perform(click())
+        Thread.sleep(1000)
         emergencyContactFirstName.perform(typeText("Anne"))
         emergencyContactFirstName.perform(closeSoftKeyboard())
 
@@ -212,6 +230,7 @@ class CreateAccountTest {
             isDisplayed()))
 
         emergencyContactLastName.perform(click())
+        Thread.sleep(1000)
         emergencyContactLastName.perform(typeText("Pot"))
         emergencyContactLastName.perform(closeSoftKeyboard())
 
@@ -220,12 +239,13 @@ class CreateAccountTest {
             isDisplayed()))
 
         emergencyContactPhoneNumber.perform(click())
+        Thread.sleep(1000)
         emergencyContactPhoneNumber.perform(typeText("5677651234"))
         emergencyContactPhoneNumber.perform(closeSoftKeyboard())
 
         submit.perform(click())
 
-        Thread.sleep(3000)
+        Thread.sleep(5000)
 
         assertTrue(createAccountTestRule.activity.isFinishing)
     }
